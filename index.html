@@ -3,10 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meny <link rel="stylesheet" href="style.css"></title>
+    <title>Meny</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="filter">
+      <input
+        type="checkbox"
+        class="checkbox"
+        id="vegCheck"
+        name="Vegetarian"
+        value="VEG"
+      />
+      <label for="vegCheck"> Vegetarian</label><br />
+      <input
+        type="checkbox"
+        class="checkbox"
+        id="beefCheck"
+        name="Beef"
+        value="BEEF"
+      />
+      <label for="vegCheck"> Beef</label><br />
+      <input
+        type="checkbox"
+        class="checkbox"
+        id="chickenCheck"
+        name="Chicken"
+        value="CHICKEN"
+      />
+      <label for="chickenCheck"> Chicken</label><br />
+      <input
+        type="checkbox"
+        class="checkbox"
+        id="fishCheck"
+        name="Fish"
+        value="FISH"
+      />
+      <label for="fishCheck"> Fish</label><br />
+    </div>
+
     <div class="meny-items"></div>
-    <script src="./index.js"></script>
+
+    <script src="./script.js"></script>
   </body>
 </html>
