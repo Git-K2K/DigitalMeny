@@ -122,6 +122,22 @@ function updatePageContent(language) {
     }
 }
 
+// Function to filter menu items by food allergies
+function filterMenuByAllergies(allergies) {
+    const filteredMenu = menu.filter(item => {
+        // Check each item for allergies
+        const itemAllergies = item.foodAllergies;
+        for (const allergen in allergies) {
+            if (allergies[allergen] && itemAllergies[allergen]) {
+                return false; 
+            }
+        }
+        return true; 
+    });
+
+    populateEnglishMenu(filteredMenu);
+}
+
 // Event listener for language selection
 languageSelect.addEventListener('change', function () {
     const selectedLanguage = languageSelect.value;
@@ -145,25 +161,6 @@ priceSortSelect.addEventListener('change', function () {
     sortMenuByPrice(selectedOrder);
 });
 
-// Initial population of the menu
-populateEnglishMenu(menu);
-
-// Function to filter menu items by food allergies
-function filterMenuByAllergies(allergies) {
-    const filteredMenu = menu.filter(item => {
-        // Check each item for allergies
-        const itemAllergies = item.foodAllergies;
-        for (const allergen in allergies) {
-            if (allergies[allergen] && itemAllergies[allergen]) {
-                return false; 
-            }
-        }
-        return true; 
-    });
-
-    populateEnglishMenu(filteredMenu);
-}
-
 // Event listener for allergy selection
 
 allergySelect.addEventListener('change', function () {
@@ -182,6 +179,8 @@ allergySelect.addEventListener('change', function () {
     }
 });
 
+// Initial population of the menu
+populateEnglishMenu(menu);
 
 
 
