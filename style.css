@@ -1,0 +1,181 @@
+/* Apply basic styling to the body and the grid container */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid-container {
+  min-height: 100vh; /* Make the grid container take up the full viewport height */
+}
+
+/* Fixed Header */
+.grid-item-header {
+  background-color: #ffffff; /* Add your desired background color */
+  color: #000000; /* Text color */
+  border-bottom: solid 3px #515151;
+  position: fixed;
+  height: 150px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2; /* Ensures it's above other content */
+}
+
+/* Fixed Sidebar */
+.grid-item-sidebar {
+  background-color: #868686; /* Add your desired background color */
+  border-right: solid 3px #515151;
+  color: #fff; /* Text color */
+  padding: 10px;
+  padding-left: 50px;
+  position: fixed;
+  top: 150px; /* Adjust the top position to clear the header */
+  left: 0;
+  width: 200px; /* Adjust the width as needed */
+  height: 100%;
+  overflow-y: auto; /* Add scroll if content overflows */
+  z-index: 1; /* Behind the header */
+}
+
+/* Main Content Area */
+.grid-item-menu {
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  background-color: #c1c1c1;
+  padding: 20px;
+  margin-left: 260px; /* Match the width of the sidebar */
+  padding-top: 230px; /* Match the height of the header */
+  color: #040303;
+}
+
+.sidebar-header {
+  font-size: 30px;
+  border-bottom: solid 2px #fff;
+  width: 130px;
+}
+
+.sidebar-header2 {
+  font-size: 20px;
+}
+
+.menu-header {
+  height: 80px;
+  width: 100%;
+  margin-left: 260px;
+  margin-top: 150px;
+  background-color: #c1c1c1;
+  position: fixed;
+  border-bottom: solid 2px rgb(235, 235, 235);
+}
+#menu-header-text {
+  padding-left: 20px;
+  font-size: 30px;
+  color: #030303;
+}
+
+/* Styling for Language Buttons */
+#en {
+  background: url("./img/flag_eng.jpg") no-repeat;
+  background-size: cover;
+  width: 45px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 20px; /* Adjust the right position as needed */
+  z-index: 3;
+}
+
+#sv {
+  background: url("./img/flag_swe.png") no-repeat;
+  background-size: cover;
+  width: 45px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 70px; /* Adjust the right position as needed */
+  z-index: 3;
+}
+
+#lucky-duck-logo {
+  position: fixed;
+  left: 20px;
+  top: 25px;
+  height: 100px;
+}
+
+.header {
+  position: fixed;
+  top: 30px;
+  left: 130px;
+  font-size: 40px;
+  border-bottom: solid 2px #fff;
+}
+
+.menu-item-checkbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-checkbox-allergy {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling for checkboxes, select, and button can be added as needed */
+
+/* Add styling for the language buttons here */
+
+/* Add styling for the logo here */
+
+/* Adjust styling as needed for your specific design */
+
+#resetBtn {
+  width: 130px;
+  height: 30px;
+}
+
+#sort-menu {
+  width: 130px;
+  height: 30px;
+}
+
+.namn {
+  color: rgb(5, 4, 4);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.name {
+  color: rgb(7, 6, 6);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.beskrivning {
+  color: rgb(7, 6, 6);
+  font-size: 18px;
+}
+
+.pris {
+  color: rgb(4, 3, 3);
+  display: inline;
+}
+
+.menu-item {
+  border-bottom: solid 2px rgb(235, 235, 235);
+  padding-bottom: 10px;
+}
+
+.description {
+  color: rgb(2, 1, 1);
+  font-size: 18px;
+}
+
+.hidden {
+  display: none;
+}

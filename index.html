@@ -3,10 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meny <link rel="stylesheet" href="style.css"></title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Meny</title>
   </head>
   <body>
-    <div class="meny-items"></div>
+    <div class="grid-container">
+      <div class="grid-item-header">
+        <img
+          id="lucky-duck-logo"
+          src="./img/Lucky_duck1.png"
+          alt="lucky-duck-logo"
+        />
+        <h1 class="header">Lucky Duck</h1>
+      </div>
+
+      <div class="grid-item-sidebar">
+        <div class="grid-item-checkbox-typ">
+          <h3 class="sidebar-header">Kategori</h3>
+          <form class="menu-item-checkbox">
+            <label>
+              <input type="checkbox" name="menuType" value="veg" id="veg" /> Veg
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="menuType"
+                value="fläsk"
+                class="kött"
+              />
+              Fläsk
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="menuType"
+                value="biff"
+                class="kött"
+              />
+              Biff
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="menuType"
+                value="fisk"
+                class="kött"
+              />
+              Fisk
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="menuType"
+                value="kyckling"
+                class="kött"
+              />
+              Kyckling
+            </label>
+          </form>
+        </div>
+        <div class="grid-item-checkbox-allergy">
+          <h3 class="sidebar-header">Allergier</h3>
+          <form class="menu-item-checkbox-allergy">
+            <label>
+              <input type="checkbox" name="allergy" value="gluten" /> Gluten
+            </label>
+            <label>
+              <input type="checkbox" name="allergy" value="lactose" /> Lactose
+            </label>
+          </form>
+        </div>
+        <div class="grid-item-sort-reset">
+          <h3 class="sidebar-header2">Sortera på pris</h3>
+          <select name="sort-menu" id="sort-menu">
+            <option value="none">Ingen</option>
+            <option value="högt">Högt till lågt</option>
+            <option value="lågt">Lågt till högt</option>
+          </select>
+        </div>
+        <br />
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <button id="en"></button> <button id="sv"></button>
+      <div class="menu-header"><h3 id="menu-header-text">Meny</h3></div>
+      <div class="grid-item-menu" id="menuList"></div>
+    </div>
+
     <script src="./index.js"></script>
   </body>
 </html>
