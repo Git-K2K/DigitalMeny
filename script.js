@@ -4,6 +4,8 @@ const foodTypeSelect = document.getElementById('food-type-select');
 const priceSortSelect = document.getElementById('price-sort-select');
 const allergySelect = document.getElementById('allergy-select');
 
+ 
+
 //import file from json 
 import meny from'./svMeny.json' assert {type: "json"};
 import menu from'./enMenu.json' assert {type: "json"};
@@ -190,9 +192,7 @@ const dropdowns = document.querySelectorAll('.language-dropdown, .food-type-drop
 // Add a click event listener to the toggle button
 toggleButton.addEventListener('click', () => {
   dropdowns.forEach(dropdown => {
-    dropdown.style.display = (dropdown.style.display === 'none' || !dropdown.style.display) ? 'flex' : 'none';
+    dropdown.style.display = (dropdown.style.display === 'none' || !dropdown.style.display) ? 'flex' : '';
     menuContainer.style.marginTop = (dropdown.style.display === 'flex') ? "200px" : "20px";
     });  
 });
-
-
