@@ -1,165 +1,242 @@
-const meny = [
-  {
-    namn: "HALLOUMI BURGARE",
-    pris: 155,
-    beskrivning:
-      "Sallad, tomat, rödlök och guacamole i briochebröd med pommes och aiol",
-    typ: "veg",
-  },
-  {
-    namn: "FLÄSKFILÉPLANKA",
-    pris: 149,
-    beskrivning: "Duchesse mos, rödvinssky, bearnaise och stekta grönsaker",
-    typ: "fläsk",
-  },
-  {
-    namn: "BIFF RYDBERG",
-    pris: 175,
-    beskrivning:
-      "Tärnad oxfilé, potatis och gullök, serveras med dijonsenapskräm och rå äggula",
-    typ: "biff",
-  },
-  {
-    namn: "SPICY CHEESEBURGER",
-    pris: 155,
-    beskrivning:
-      "180gram högrevsburgare med sallad, tomat, picklade rödlök, cheddarost med jalapeños och barbecuesås i briochebröd med pommes och rökig ranch-aioli",
-    typ: "biff",
-  },
-  {
-    namn: "FISH'N CHIPS",
-    pris: 149,
-    beskrivning:
-      '"Beer-batter" panerad torskrygg med dill-aioli, halstrad citron och pommes',
-    typ: "fisk",
-  },
-  {
-    namn: "HUSETS SCHNITZEL",
-    pris: 175,
-    beskrivning:
-      '200 gram välbankad schnitzel "Borås största" med citron, kapris, anjovis, kryddsmör och rödvinssky serveras med stekt potatis',
-    typ: "fläsk",
-  },
-  {
-    namn: "CAESARSALLAD",
-    pris: 139,
-    beskrivning:
-      "Varm kyckling, bacon, krutonger, parmesan samt caesardressing",
-    typ: "kyckling",
-  },
-  {
-    namn: "LAXSALLAD MED QUINOA",
-    pris: 159,
-    beskrivning:
-      "Grillad lax med quinoa, cocktailtomater, blandsallad, morot julienne, rödlök med en vinägrett",
-    typ: "fisk",
-  },
-  {
-    namn: "KRÄMIG KYCKLING PASTA",
-    pris: 169,
-    beskrivning: "Soltorkade tomater, basilika, grönsaker och parmesan",
-    typ: "kyckling",
-  },
-  {
-    namn: "MUSSLOR AL CAVA",
-    pris: 189,
-    beskrivning:
-      "Ångkokta musslor i en krämig sås gjord på cava, toppas med cream fraîche och jalapeños, serveras med pommes och aioli",
-    typ: "fisk",
-  },
-  {
-    namn: "GRILLAD OXFILE",
-    pris: 259,
-    beskrivning:
-      "200 gram oxfilé, rödvinssås, frästa grönsaker serveras med potatisgratäng (går att få med pommes och bearnaise) GRILLED BEEF TENDERLOIN ",
-    typ: "biff",
-  },
-];
-const kycklingRätter = meny.filter(
-  (kycklingRätter) => kycklingRätter.typ === ("kyckling", "biff")
-);
+"use strict";
 
-const biffRätter = meny.filter((biff) => biff.typ === "biff");
-const menyItems = document.getElementsByClassName("meny-items")[0];
+let xmlhttp = new XMLHttpRequest();
+let menuJson = [];
 
-meny.forEach((maträtt) => {
-  let itemDiv = document.createElement("div");
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    var response = JSON.parse(this.responseText);
+    response.menu.forEach((item) => {
+      menuJson.push(item);
+    });
+    printMenu();
+  }
+};
 
-  let itemHR = document.createElement("HR");
-  let itemH3 = document.createElement("h3");
-  let itemBeskr = document.createElement("p");
-  let itemPris = document.createElement("p");
-  let itemH3Text = document.createTextNode(maträtt.namn);
-  let itemBeskrText = document.createTextNode(maträtt.beskrivning);
-  let itemPrisText = document.createTextNode(`${maträtt.pris} kr`);
+xmlhttp.open("GET", "menu.json", true);
+xmlhttp.send();
 
-  itemH3.appendChild(itemH3Text);
-  itemBeskr.appendChild(itemBeskrText);
-  itemPris.appendChild(itemPrisText);
+// Global variables
 
-  itemDiv.appendChild(itemH3);
+let anyCategoryChecked = false;
+let gluten = false;
+let lactose = false;
+let sortBy = "standard";
+let language = "SWE";
+let printedMenu = [];
+let uncheckedCategories = [];
 
-  itemDiv.appendChild(itemBeskr);
-
-  itemDiv.appendChild(itemPris);
-  itemDiv.appendChild(itemHR);
-
-  itemDiv.classList.add("menuItem");
-  itemDiv.classList.add(`${maträtt.typ}`);
-
-  menyItems.appendChild(itemDiv);
-});
-
+// Category checkboxes
 const vegCheck = document.getElementById("vegCheck");
-const beefCheck = document.getElementById("beefCheck");
-let veg = false;
-let beef = true;
+const categoryCheckboxes = document.querySelectorAll(".category");
 
-const toggleVeg = function () {
-  if (veg) {
-    let nonVegItems = document.querySelectorAll("div.menuItem:not(.veg)");
-    nonVegItems.forEach(function (item) {
-      item.classList.toggle("hidden");
-    });
-    document.getElementById("beefCheck").checked = false;
-    veg = true;
-  } else {
-    let nonVegItems = document.querySelectorAll("div.menuItem:not(.veg)");
-    nonVegItems.forEach(function (item) {
-      item.classList.toggle("hidden");
-    });
-    veg = false;
-  }
-};
+// Allergies checkboxes
+const glutenCheck = document.getElementById("glutenCheck");
+const lactoseCheck = document.getElementById("lactoseCheck");
 
-const toggleBeef = function (checked) {
-  const beefItems = document.querySelectorAll("div.biff");
-  if (checked) {
-    beefItems.forEach(function (item) {
-      item.classList.remove("hidden");
-      beef = true;
-    });
-  } else {
-    beefItems.forEach(function (item) {
-      item.classList.add("hidden");
-      beef = false;
-    });
-  }
-  console.log(beef);
-};
+// Drop down selectors
+const sortBySelect = document.getElementById("sortBy");
+const languageSelect = document.getElementById("language");
 
-vegCheck.addEventListener("change", function (event) {
-  if (event.target.checked) {
-    document.getElementById("beefCheck").checked = false;
-    document.getElementById("chickenCheck").checked = false;
-    document.getElementById("fishCheck").checked = false;
-  } else {
+// Buttons
+const resetFiltersBtn = document.getElementById("reset-filters");
+
+// Language HTML elements
+const languageElements = document.querySelectorAll(".lang");
+
+// FUNCTIONS
+
+function printMenu() {
+  // Re-set printedMenu
+  let printedMenu = JSON.parse(JSON.stringify(menuJson));
+
+  // Call the clearMenu function
+  clearMenu();
+
+  // Sort the menu using the variable sortBy
+  sortMenu(printedMenu, sortBy);
+
+  // Filter the menu
+  if (checkCategories()) {
+    printedMenu = filterCategories(printedMenu);
   }
+
+  if (checkAllergies()) {
+    printedMenu = filterAllergies(printedMenu);
+  }
+
+  // Generate message if no menu items match the filters
+  if (printedMenu.length === 0) {
+    const noItemsParagraph = document.createElement("p");
+    noItemsParagraph.classList.add("menuItem");
+    if (language === "SWE") {
+      noItemsParagraph.textContent =
+        "Det finns inga rätter som matchar valda kriterier";
+    } else {
+      noItemsParagraph.textContent =
+        "There are no options that match the selected criterias";
+    }
+    document.querySelector(".menuItems").appendChild(noItemsParagraph);
+  } else {
+    // Create HTML-elements for each menu item
+    printedMenu.forEach(function (item) {
+      const menuItemDiv = document.createElement("div");
+      menuItemDiv.classList.add("menuItem");
+      const menuItemTitle = document.createElement("h3");
+      const menuDesctiption = document.createElement("p");
+      if (language === "SWE") {
+        menuItemTitle.textContent = `${item.titleSWE} | ${item.priceFull} kr ${
+          item.priceHalf !== "" ? "(Halv " + item.priceHalf + " kr)" : ""
+        }`;
+        menuDesctiption.textContent = item.descriptionSWE;
+      } else if (language === "ENG") {
+        menuItemTitle.textContent = `${item.titleENG} | ${item.priceFull} kr ${
+          item.priceHalf !== "" ? "(Half " + item.priceHalf + " kr)" : ""
+        }`;
+        menuDesctiption.textContent = item.descriptionENG;
+      }
+      menuItemDiv.appendChild(menuItemTitle);
+      menuItemDiv.appendChild(menuDesctiption);
+
+      document.querySelector(".menuItems").appendChild(menuItemDiv);
+    });
+  }
+}
+
+function filterCategories(menu) {
+  uncheckedCategories.forEach(function (category) {
+    menu = menu.filter((menuItem) => menuItem.category !== category);
+  });
+
+  return menu;
+}
+
+function filterAllergies(menu) {
+  let tempMenu = menu;
+
+  if (lactose) {
+    tempMenu = tempMenu.filter((menuItem) => menuItem.lactoseFree);
+  }
+
+  if (gluten) {
+    tempMenu = tempMenu.filter((menuItem) => menuItem.glutenFree);
+  }
+
+  return tempMenu;
+}
+
+// CLEAR the menu
+function clearMenu() {
+  const menuItems = document.querySelectorAll(".menuItem");
+  menuItems.forEach(function (item) {
+    item.remove();
+  });
+}
+
+// SORT the menu
+function sortMenu(menu, sortBy) {
+  if (sortBy === "priceHighLow") {
+    printedMenu = menu.sort(function (a, b) {
+      if (a.priceFull < b.priceFull) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  } else if (sortBy === "priceLowHigh") {
+    printedMenu = menu.sort(function (a, b) {
+      if (a.priceFull > b.priceFull) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+}
+
+function checkCategories() {
+  let categoryCheckboxes = document.querySelectorAll(".category");
+  let checked = false;
+  categoryCheckboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      checked = true;
+    }
+  });
+  return checked;
+}
+
+function checkAllergies() {
+  let categoryCheckboxes = document.querySelectorAll(".allergy");
+  let checked = false;
+  categoryCheckboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      checked = true;
+    }
+  });
+  return checked;
+}
+
+function resetFilters() {
+  // Uncheck all boxes
+  const allCheckBoxes = document.querySelectorAll(".checkbox");
+  allCheckBoxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+  // Re-set sorting
+  sortBy = "standard";
+  document.getElementById("sortBy").value = "standard";
+  printMenu();
+}
+
+function getUncheckedCategories() {
+  uncheckedCategories = [];
+  categoryCheckboxes.forEach((box) => {
+    if (!box.checked) {
+      uncheckedCategories.push(box.value);
+    }
+  });
+}
+
+function toggleLanguage() {
+  languageElements.forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+// EVENT LISTENERS
+
+categoryCheckboxes.forEach((box) => {
+  box.addEventListener("change", function (event) {
+    if (event.target.value === "Veg" && event.target.checked) {
+      document.getElementById("beefCheck").checked = false;
+      document.getElementById("chickenCheck").checked = false;
+      document.getElementById("fishCheck").checked = false;
+      document.getElementById("porkCheck").checked = false;
+    }
+    getUncheckedCategories();
+    printMenu();
+  });
 });
 
-beefCheck.addEventListener("change", function (event) {
-  // console.log(event.target.checked);
-  toggleBeef(event.target.checked);
+lactoseCheck.addEventListener("change", function (event) {
+  lactose = event.target.checked;
+  printMenu();
 });
 
-const hideShow = function () {};
+glutenCheck.addEventListener("change", function (event) {
+  gluten = event.target.checked;
+  printMenu();
+});
+
+sortBySelect.addEventListener("change", function (event) {
+  sortBy = event.target.value;
+  printMenu();
+});
+
+languageSelect.addEventListener("change", function (event) {
+  language = event.target.value;
+  toggleLanguage();
+  printMenu();
+});
+
+resetFiltersBtn.addEventListener("click", resetFilters);

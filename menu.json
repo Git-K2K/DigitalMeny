@@ -1,0 +1,125 @@
+{
+  "menu": [
+    {
+      "category": "Pork",
+      "titleSWE": "FLÄSKFILÉPLANKA",
+      "titleENG": "PORK TENDERLOIN PLANK STEAK",
+      "descriptionSWE": "Duchesse mos, rödvinssky, bearnaise och stekta grönsaker",
+      "descriptionENG": "Duchesse potatoes, a redwine reduction, béarnaise and fried vegetables",
+      "priceHalf": "",
+      "priceFull": 149,
+      "glutenFree": true,
+      "lactoseFree": false
+    },
+    {
+      "category": "Beef",
+      "titleSWE": "BIFF RYDBERG",
+      "titleENG": "BIFF RYDBERG",
+      "descriptionSWE": "Tärnad oxfilé, potatis och gullök, serveras med dijonsenapskräm och rå äggula",
+      "descriptionENG": "Diced beef tenderloin, potatoes and onion, served with dijonmustard and raw egg yolk",
+      "priceHalf": "",
+      "priceFull": 175,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Beef",
+      "titleSWE": "SPICY CHEESEBURGER",
+      "titleENG": "SPICY CHEESEBURGER",
+      "descriptionSWE": "180 gram högrevsburgare med sallad, tomat, picklade rödlök, cheddarost med jalapeños och barbecuesås i briochebröd med pommes och rökig ranch-aioli",
+      "descriptionENG": "180 gram prime rib burger with lettuce, tomato, pickled red onion, cheddar cheese with jalapeños and barbecue sauce in brioche bread with fries and smokey ranch-aioli",
+      "priceHalf": "",
+      "priceFull": 155,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Veg",
+      "titleSWE": "HALLOUMI BURGARE",
+      "titleENG": "HALLOUMI BURGER",
+      "descriptionSWE": "Sallad, tomat, rödlök och guacamole i briochebröd med pommes och aioli",
+      "descriptionENG": "Lettuce, tomato, red onion and guacamole in brioche bread with fries and aioli",
+      "priceHalf": "",
+      "priceFull": 155,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Fish",
+      "titleSWE": "FISH'N CHIPS",
+      "titleENG": "FISH'N CHIPS",
+      "descriptionSWE": "\"Beer-batter\" panerad torskrygg med dill-aioli, halstrad citron och pommes",
+      "descriptionENG": "Beer-batter breaded cod loins with dill-aioli, seared lemon and fries",
+      "priceHalf": "",
+      "priceFull": 149,
+      "glutenFree": false,
+      "lactoseFree": false
+    },
+    {
+      "category": "Pork",
+      "titleSWE": "HUSETS SCHNITZEL",
+      "titleENG": "SCHNITZEL",
+      "descriptionSWE": "200 gram välbankad schnitzel \"Borås största\" med citron, kapris, anjovis, kryddsmör och rödvinssky serveras med stekt potatis",
+      "descriptionENG": "200 grams of meat \"Borås biggest\" served with lemon, capers, anchovy, herb butter and a redwine reduction with fried potatoes",
+      "priceHalf": 105,
+      "priceFull": 155,
+      "glutenFree": false,
+      "lactoseFree": false
+    },
+    {
+      "category": "Chicken",
+      "titleSWE": "CAESARSALLAD",
+      "titleENG": "CAESARSALLAD",
+      "descriptionSWE": "Varm kyckling, bacon, krutonger, parmesan samt caesardressing",
+      "descriptionENG": "Grilled chicken, bacon, croutons, parmesan and caesardressing",
+      "priceHalf": 85,
+      "priceFull": 139,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Fish",
+      "titleSWE": "LAXSALLAD MED QUINOA",
+      "titleENG": "SALMONSALLAD WITH QUINOA",
+      "descriptionSWE": "Grillad lax med quinoa, cocktailtomater, blandsallad, morot julienne, rödlök med en vinägrett",
+      "descriptionENG": "Grilled salmon with quinoa, cocktail tomatoes, julianne carrot, mixed salad, red onion with vinegrette",
+      "priceHalf": 105,
+      "priceFull": 155,
+      "glutenFree": false,
+      "lactoseFree": false
+    },
+    {
+      "category": "Chicken",
+      "titleSWE": "KRÄMIG KYCKLING PASTA",
+      "titleENG": "CREAMY CHICKENPASTA",
+      "descriptionSWE": "Soltorkade tomater, basilika, grönsaker och parmesan",
+      "descriptionENG": "Sundried tomatoes, basil, vegetables and parmesan",
+      "priceHalf": "",
+      "priceFull": 169,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Fish",
+      "titleSWE": "MUSSLOR AL CAVA",
+      "titleENG": "MUSSLES ÁL CAVA",
+      "descriptionSWE": "Ångkokta musslor i en krämig sås gjord på cava, toppas med cream fraîche och jalapeños, serveras med pommes och aioli",
+      "descriptionENG": "Steamed mussels in a creamy cava sauce, topped with cream fraîche and jalapeños, served with fries and aioli",
+      "priceHalf": 109,
+      "priceFull": 189,
+      "glutenFree": false,
+      "lactoseFree": true
+    },
+    {
+      "category": "Beef",
+      "titleSWE": "GRILLAD OXFILE",
+      "titleENG": "GRILLED BEEF TENDERLOIN",
+      "descriptionSWE": "200 gram oxfilé, rödvinssås, frästa grönsaker serveras med potatisgratäng (går att få med pommes och bearnaise)",
+      "descriptionENG": "200 gram beef tenderloin, redwine reduction, fried vegetable and potato gratin (possible with fries and bearnaise)",
+      "priceHalf": "",
+      "priceFull": 259,
+      "glutenFree": false,
+      "lactoseFree": false
+    }
+  ]
+}
