@@ -16,7 +16,6 @@ h2 {
 }
 
 p {
-  text-wrap: wrap;
   padding: 10px;
   letter-spacing :0.1rem;
 }
@@ -70,14 +69,18 @@ nav {
 /* Styling for select elements */
 select {
   padding: 5px;
-  border-radius: 5px;
-  background-color: #fff;
+  border-radius: 0 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+select:hover{
+  background-color: #aaaaaa;
 }
 
 /* Styling for the main content */
 main {
   margin-top: 78px;
-  padding: 25px;
+  padding: 20px;
   flex-grow: 1; /* Allow the main content to grow and push the footer down */
   width: 100%;
   background-image: url(./images/pexels-vincent-ma-janssen-1310777.jpg);
@@ -109,6 +112,12 @@ main {
   height: 150px;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform .2s;
+}
+
+.menu-card img:hover{
+  transform: scale(1.05);
+  border: 1px solid black;
 }
 
 /* Styling for the footer */
