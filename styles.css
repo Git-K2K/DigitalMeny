@@ -44,11 +44,28 @@ header {
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 20px;
   width: 100%; 
   gap: 20px;
+}
+
+.toggle-button{
+  position:absolute;
+  top: 0.73rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  z-index: 110;
+}
+.toggle-button .bar{
+  height: 3px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .logo img{
@@ -60,10 +77,13 @@ nav {
 .language-dropdown,
 .food-type-dropdown,
 .price-sort-dropdown,
-.allergy-dropdown {
+.allergy-dropdown label{
   margin-right: 20px;
   padding-right: 20px;
   font-size: 16px;
+}
+.language-dropdown label {
+  margin-right: 10px;
 }
 
 /* Styling for select elements */
@@ -156,15 +176,38 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .toggle-button {
+    display: flex;
+  }
 nav {
   flex-direction: column;
   align-items: flex-start;
   padding-left:20px;
-  padding-bottom: 10px; 
+  gap: 10px;
+  margin-bottom: 10px;
+}
+select {
+  border-radius:5px;
+}
+nav select{
+  margin: 0;
+  padding: 10px;
+}
+nav label {
+  padding-right: 10px;
 }
 main{
-  margin-top: 319px;
+  margin-top: 78px;
 }
+.language-dropdown, .food-type-dropdown, .price-sort-dropdown, .allergy-dropdown{
+  align-items:center;
+  display: none;
+  padding: 0;
+}
+.language-dropdown:active, .food-type-dropdown:active, .price-sort-dropdown:active, .allergy-dropdown:active{
+  display: flex;
+}
+
 }
 
 

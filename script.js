@@ -182,5 +182,17 @@ allergySelect.addEventListener('change', function () {
 // Initial population of the menu
 populateEnglishMenu(menu);
 
+//---------------------------------------------------------------
+// Get the toggle button and all dropdown elements (work with mobile size)
+const toggleButton = document.querySelector('.toggle-button');
+const dropdowns = document.querySelectorAll('.language-dropdown, .food-type-dropdown, .price-sort-dropdown, .allergy-dropdown');
+
+// Add a click event listener to the toggle button
+toggleButton.addEventListener('click', () => {
+  dropdowns.forEach(dropdown => {
+    dropdown.style.display = (dropdown.style.display === 'none' || !dropdown.style.display) ? 'flex' : 'none';
+    menuContainer.style.marginTop = (dropdown.style.display === 'flex') ? "200px" : "20px";
+    });  
+});
 
 
