@@ -201,6 +201,12 @@ function toggleLanguage() {
   languageElements.forEach((el) => {
     el.classList.toggle("hidden");
   });
+
+  if (language === "SWE") {
+    document.documentElement.lang = "sv";
+  } else {
+    document.documentElement.lang = "en";
+  }
 }
 
 // EVENT LISTENERS
