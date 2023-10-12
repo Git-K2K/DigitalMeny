@@ -1,105 +1,187 @@
-const meny = [
-  {
-    namn: "FLÄSKFILÉPLANKA",
-    pris: 149,
-    beskrivning: "Duchesse mos, rödvinssky, bearnaise och stekta grönsaker",
-    typ: "fläsk",
-  },
-  {
-    namn: "BIFF RYDBERG",
-    pris: 175,
-    beskrivning:
-      "Tärnad oxfilé, potatis och gullök, serveras med dijonsenapskräm och rå äggula",
-    typ: "biff",
-  },
-  {
-    namn: "SPICY CHEESEBURGER",
-    pris: 155,
-    beskrivning:
-      "180gram högrevsburgare med sallad, tomat, picklade rödlök, cheddarost med jalapeños och barbecuesås i briochebröd med pommes och rökig ranch-aioli",
-    typ: "biff",
-  },
-  {
-    namn: "HALLOUMI BURGARE",
-    pris: 155,
-    beskrivning:
-      "Sallad, tomat, rödlök och guacamole i briochebröd med pommes och aiol",
-    typ: "veg",
-  },
-  {
-    namn: "FISH'N CHIPS",
-    pris: 149,
-    beskrivning:
-      '"Beer-batter" panerad torskrygg med dill-aioli, halstrad citron och pommes',
-    typ: "fisk",
-  },
-  {
-    namn: "HUSETS SCHNITZEL",
-    pris: 175,
-    beskrivning:
-      '200 gram välbankad schnitzel "Borås största" med citron, kapris, anjovis, kryddsmör och rödvinssky serveras med stekt potatis',
-    typ: "fläsk",
-  },
-  {
-    namn: "CAESARSALLAD",
-    pris: 139,
-    beskrivning:
-      "Varm kyckling, bacon, krutonger, parmesan samt caesardressing",
-    typ: "kyckling",
-  },
-  {
-    namn: "LAXSALLAD MED QUINOA",
-    pris: 159,
-    beskrivning:
-      "Grillad lax med quinoa, cocktailtomater, blandsallad, morot julienne, rödlök med en vinägrett",
-    typ: "fisk",
-  },
-  {
-    namn: "KRÄMIG KYCKLING PASTA",
-    pris: 169,
-    beskrivning: "Soltorkade tomater, basilika, grönsaker och parmesan",
-    typ: "kyckling",
-  },
-  {
-    namn: "MUSSLOR AL CAVA",
-    pris: 189,
-    beskrivning:
-      "Ångkokta musslor i en krämig sås gjord på cava, toppas med cream fraîche och jalapeños, serveras med pommes och aioli",
-    typ: "fisk",
-  },
-  {
-    namn: "GRILLAD OXFILE",
-    pris: 259,
-    beskrivning:
-      "200 gram oxfilé, rödvinssås, frästa grönsaker serveras med potatisgratäng (går att få med pommes och bearnaise) GRILLED BEEF TENDERLOIN ",
-    typ: "biff",
-  },
-];
-const kycklingRätter = meny.filter(
-  (kycklingRätter) => kycklingRätter.typ === ("kyckling", "biff")
-);
+const menuContainer = document.getElementById('menu-container');
+const languageSelect = document.getElementById('language-select');
+const foodTypeSelect = document.getElementById('food-type-select');
+const priceSortSelect = document.getElementById('price-sort-select');
+const allergySelect = document.getElementById('allergy-select');
 
-const biffRätter = meny.filter((biff) => biff.typ === "biff");
-const menyItems = document.getElementsByClassName("meny-items")[0];
+//import file from json 
+import meny from'./svMeny.json' assert {type: "json"};
+import menu from'./enMenu.json' assert {type: "json"};
 
-kycklingRätter.forEach((maträtt) => {
-  let itemHR = document.createElement("HR");
-  let itemH3 = document.createElement("h3");
-  let itemBeskr = document.createElement("p");
-  let itemPris = document.createElement("p");
-  let itemH3Text = document.createTextNode(maträtt.namn);
-  let itemBeskrText = document.createTextNode(maträtt.beskrivning);
-  let itemPrisText = document.createTextNode(`${maträtt.pris} kr`);
-  itemH3.appendChild(itemH3Text);
-  itemBeskr.appendChild(itemBeskrText);
-  itemPris.appendChild(itemPrisText);
+// Function to populate the menu cards English
+function populateEnglishMenu(menuItems) {
+    menuContainer.innerHTML = ''; 
+    menuItems.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('menu-card');
+        card.innerHTML = `
+            <img src=${item.img} alt="${item.name}"/>
+            <h2>${item.name}</h2>
+            <p>${item.description}</p>
+            <p id="priceElement">Price: ${item.price}kr</p>
+            <p>Type: ${item.type}</p>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
+// Function to populate the menu cards Swedish
+function populateSwedishMenu(menuItems) {
+    menuContainer.innerHTML = ''; 
+    menuItems.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('menu-card');
+        card.innerHTML = `
+            <img src=${item.img} alt="${item.name}"/>
+            <h2>${item.namn}</h2>
+            <p>${item.beskrivning}</p>
+            <p id="priceElement">Price: ${item.pris}Kr</p>
+            <p>Type: ${item.typ}</p>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
 
-  menyItems.appendChild(itemH3);
+// Function to sort menu items by price
+function sortMenuByPrice(order) {
+    const sortedMenu = [...menu];
+    sortedMenu.sort((a, b) => {
+        if (order === 'asc') {
+            return a.price - b.price;
+        } else {
+            return b.price - a.price;
+        }
+    });
+    populateEnglishMenu(sortedMenu);
+}
 
-  menyItems.appendChild(itemBeskr);
+// Function to filter menu items by food type
+function filterMenuByType(type) {
+    if (type === 'all') {
+        populateEnglishMenu(menu);
+    } else {
+        const filteredMenu = menu.filter(item => item.type === type);
+        populateEnglishMenu(filteredMenu);
+    }
+}
 
-  menyItems.appendChild(itemPris);
-  menyItems.appendChild(itemHR);
+// Function to update page content based on the selected language
+function updatePageContent(language) {
+    const translations = {
+        'language-label': {
+            en: 'Language',
+            sv: 'Språk'
+        },
+        'food-type-label': {
+            en: 'Food Type',
+            sv: 'Typ av mat'
+        },
+        'all-option': {
+            en: 'All',
+            sv: 'Alla'
+        },
+        'beef-option': {
+            en: 'Beef',
+            sv: 'Nötkött'
+        },
+        'fish-option': {
+            en: 'Fish',
+            sv: 'Fisk'
+        },
+        'chicken-option': {
+            en: 'Chicken',
+            sv: 'Kyckling'
+        },
+        'vegetarian-option': {
+            en: 'Vegetarian',
+            sv: 'Vegetarisk'
+        },
+        'asc': {
+            en: 'Price: Low to High',
+            sv: 'Pris: Lågt till Högt',
+        },
+        'desc': {
+            en: 'Price: High to Low',
+            sv: 'Pris: Högt till Lågt'
+        },
+        'price-sort-label':{
+            en:'Price Sorting',
+            sv:'Prissortering'
+        },
+        'allergy-label':{
+            en:'Filter by Allergies',
+            sv:'Filtrera efter allergier'
+        }
+    };
+
+    // Update text content for elements with translations
+    for (const elementId in translations) {
+        const element = document.getElementById(elementId);
+        if (element && translations[elementId][language]) {
+            element.textContent = translations[elementId][language];
+        }
+    }
+}
+
+// Event listener for language selection
+languageSelect.addEventListener('change', function () {
+    const selectedLanguage = languageSelect.value;
+    updatePageContent(selectedLanguage);
+    if (selectedLanguage === 'en') {
+        populateEnglishMenu(menu); // Use English menu data
+    } else if (selectedLanguage === 'sv') {
+        populateSwedishMenu(meny); // Use Swedish menu data
+    }
 });
 
-console.log(biffRätter);
+// Event listener for food type selection
+foodTypeSelect.addEventListener('change', function () {
+    const selectedType = foodTypeSelect.value;
+    filterMenuByType(selectedType);
+});
+
+// Event listener for price sorting
+priceSortSelect.addEventListener('change', function () {
+    const selectedOrder = priceSortSelect.value;
+    sortMenuByPrice(selectedOrder);
+});
+
+// Initial population of the menu
+populateEnglishMenu(menu);
+
+// Function to filter menu items by food allergies
+function filterMenuByAllergies(allergies) {
+    const filteredMenu = menu.filter(item => {
+        // Check each item for allergies
+        const itemAllergies = item.foodAllergies;
+        for (const allergen in allergies) {
+            if (allergies[allergen] && itemAllergies[allergen]) {
+                return false; 
+            }
+        }
+        return true; 
+    });
+
+    populateEnglishMenu(filteredMenu);
+}
+
+// Event listener for allergy selection
+
+allergySelect.addEventListener('change', function () {
+    const selectedAllergy = allergySelect.value;
+    
+    if (selectedAllergy === 'none') {
+        populateEnglishMenu(menu); // Show all menu items if "None" selected
+    } else {
+        // Create an object to represent selected allergies
+        const allergies = {
+            nuts: selectedAllergy === 'nuts',
+            dairy: selectedAllergy === 'dairy',
+            gluten: selectedAllergy === 'gluten',
+        };
+        filterMenuByAllergies(allergies);
+    }
+});
+
+
+
+
