@@ -18,6 +18,7 @@ xhttp.onreadystatechange = function () {
     const selectSort = document.getElementById("sort-menu");
     const isKött = document.querySelectorAll(".kött");
     const isVeg = document.getElementById("veg");
+    const languageElements = document.querySelectorAll(".lang");
 
     let sortMenu = false;
     let inEnglishBool = false; // behövs för att språket ska ändras även när menuItems uppdaterad
@@ -144,6 +145,7 @@ xhttp.onreadystatechange = function () {
     });
 
     enBtn.addEventListener("click", () => {
+      toggleLanguage();
       inEnglishBool = true;
       if (inEnglishBool) {
         inEnglish();
@@ -153,6 +155,7 @@ xhttp.onreadystatechange = function () {
     });
 
     svBtn.addEventListener("click", () => {
+      toggleLanguage();
       inEnglishBool = false;
       if (inEnglishBool) {
         inEnglish();
@@ -213,6 +216,12 @@ xhttp.onreadystatechange = function () {
       });
       document.getElementById("en").style.border = "none";
       document.getElementById("sv").style.border = "solid 1px red";
+    }
+
+    function toggleLanguage() {
+      languageElements.forEach((el) => {
+        el.classList.toggle("hidden");
+      });
     }
 
     //Funktion för att nolla alla filter

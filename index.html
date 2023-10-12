@@ -19,52 +19,83 @@
 
       <div class="grid-item-sidebar">
         <div class="grid-item-checkbox-typ">
-          <h3 class="sidebar-header">Kategori</h3>
-          <form class="menu-item-checkbox">
+          <h3 class="sidebar-header lang">Kategori</h3>
+          <h3 class="sidebar-header lang hidden">Category</h3>
+        </div>
+        <form class="menu-item-checkbox lang">
+          <label>
+            <input
+              type="checkbox"
+              name="menuType"
+              value="veg"
+              id="veg"
+            />Vegetariskt
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="fläsk" class="kött" />
+            Fläsk
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="biff" class="kött" />
+            Biff
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="fisk" class="kött" />
+            Fisk
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="menuType"
+              value="kyckling"
+              class="kött"
+            />
+            Kyckling
+          </label>
+        </form>
+        <form class="menu-item-checkbox lang hidden">
+          <label>
+            <input
+              type="checkbox"
+              name="menuType"
+              value="veg"
+              id="veg"
+            />Vegetarian
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="fläsk" class="kött" />
+            Pork
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="biff" class="kött" />
+            Beef
+          </label>
+          <label>
+            <input type="checkbox" name="menuType" value="fisk" class="kött" />
+            Seafood
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="menuType"
+              value="kyckling"
+              class="kött"
+            />
+            Chicken
+          </label>
+        </form>
+        <div class="grid-item-checkbox-allergy">
+          <h3 class="sidebar-header lang">Allergier</h3>
+          <h3 class="sidebar-header lang hidden">Allergies</h3>
+          <form class="menu-item-checkbox-allergy lang">
             <label>
-              <input type="checkbox" name="menuType" value="veg" id="veg" /> Veg
+              <input type="checkbox" name="allergy" value="gluten" /> Gluten
             </label>
             <label>
-              <input
-                type="checkbox"
-                name="menuType"
-                value="fläsk"
-                class="kött"
-              />
-              Fläsk
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="menuType"
-                value="biff"
-                class="kött"
-              />
-              Biff
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="menuType"
-                value="fisk"
-                class="kött"
-              />
-              Fisk
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="menuType"
-                value="kyckling"
-                class="kött"
-              />
-              Kyckling
+              <input type="checkbox" name="allergy" value="lactose" /> Laktos
             </label>
           </form>
-        </div>
-        <div class="grid-item-checkbox-allergy">
-          <h3 class="sidebar-header">Allergier</h3>
-          <form class="menu-item-checkbox-allergy">
+          <form class="menu-item-checkbox-allergy lang hidden">
             <label>
               <input type="checkbox" name="allergy" value="gluten" /> Gluten
             </label>
@@ -75,14 +106,20 @@
         </div>
         <div class="grid-item-sort-reset">
           <h3 class="sidebar-header2">Sortera på pris</h3>
-          <select name="sort-menu" id="sort-menu">
+          <select name="sort-menu" id="sort-menu" class="lang">
             <option value="none">Ingen</option>
             <option value="högt">Högt till lågt</option>
             <option value="lågt">Lågt till högt</option>
           </select>
+          <select name="sort-menu" id="sort-menu" class="lang hidden">
+            <option value="none">None</option>
+            <option value="högt">High to low</option>
+            <option value="lågt">Low to high</option>
+          </select>
         </div>
         <br />
-        <button id="resetBtn">Reset</button>
+        <button id="resetBtn" class="lang">Återställ filter</button>
+        <button id="resetBtn" class="lang hidden">Reset filter</button>
       </div>
 
       <button id="en"></button> <button id="sv"></button>
