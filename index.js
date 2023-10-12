@@ -4,6 +4,7 @@ xhttp.onreadystatechange = function () {
     let response = JSON.parse(xhttp.responseText);
 
     const menu = response.menu;
+
     const menuList = document.getElementById("menuList"); // hämtar HTML diven menuList
     const menuTypeCheckboxes = document.querySelectorAll(
       'input[name="menuType"]'
@@ -37,26 +38,22 @@ xhttp.onreadystatechange = function () {
       const selectedAllergens = Array.from(allergyCheckboxes)
         .filter((checkbox) => checkbox.checked)
         .map((checkbox) => checkbox.value);
-
       //filtrerar menyn baserat på vilka typer och allergier
       filteredMenu = menu.filter((item) => {
         // kollar om om mattypen finns på objektet
         const typeMatch =
           selectedTypes.length === 0 || selectedTypes.includes(item.typ);
-
         // kollar om allergen inte finns på objektet
         const allergenMatch =
           selectedAllergens.length === 0 ||
           selectedAllergens.every(
             (allergen) => !item.allergy.includes(allergen)
           );
-
-        //skickar tillbaka objekten som innehåller både mattypen och inte innehåller allergenen
-        return typeMatch && allergenMatch;
+        return typeMatch && allergenMatch; //skickar tillbaka objekten som innehåller både mattypen och inte innehåller allergenen
       });
 
-      let sortedmenu = [];
-
+      // logic för att sortera meny beaserat på pris
+      let sortedmenu = []; //skapar en tom array
       if (sortMenu) {
         if (sortMenuHigh) {
           sortedmenu = filteredMenu.sort(function (a, b) {
@@ -85,7 +82,6 @@ xhttp.onreadystatechange = function () {
     // funktionen var att visa objekte
     function displayMenuItems(menuItems) {
       menuList.innerHTML = ""; // Clear the list
-
       if (menuItems.length === 0) {
         const listItem = document.createElement("div");
         listItem.classList.add("menu-item");
@@ -109,6 +105,7 @@ xhttp.onreadystatechange = function () {
         });
       }
 
+      //skapar DOM kopplingar när elementen skapats
       descriptionText = document.querySelectorAll(".description");
       nameText = document.querySelectorAll(".name");
       namnText = document.querySelectorAll(".namn");
@@ -121,83 +118,24 @@ xhttp.onreadystatechange = function () {
       }
     }
 
+    displayMenuItems(menu); // Initialize with all menu items
+
+    // eventlisteners
+
     isVeg.addEventListener("change", () => {
-      isKött.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-      console.log("klick");
+      if (isVeg.checked) {
+        isKött.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+      }
     });
 
-    // Add event listeners to checkboxes to trigger filtering
     menuTypeCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", updateMenuItems);
     });
 
     allergyCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", updateMenuItems);
-    });
-
-    // Initialize with all menu items
-    displayMenuItems(menu);
-
-    function inEnglish() {
-      descriptionText.forEach((item) => {
-        item.classList.remove("hidden");
-      });
-      nameText.forEach((item) => {
-        item.classList.remove("hidden");
-      });
-      namnText.forEach((item) => {
-        item.classList.add("hidden");
-      });
-      beskrivningText.forEach((item) => {
-        item.classList.add("hidden");
-      });
-    }
-
-    function inSwedish() {
-      descriptionText.forEach((item) => {
-        item.classList.add("hidden");
-      });
-      nameText.forEach((item) => {
-        item.classList.add("hidden");
-      });
-      namnText.forEach((item) => {
-        item.classList.remove("hidden");
-      });
-      beskrivningText.forEach((item) => {
-        item.classList.remove("hidden");
-      });
-    }
-
-    function resetAllFilter() {
-      menuTypeCheckboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-      allergyCheckboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-      selectSort.selectedIndex = 0;
-      sortMenu = false;
-      sortMenuHigh = false;
-    }
-
-    selectSort.addEventListener("change", () => {
-      if (selectSort.value === "none") {
-        sortMenu = false;
-        console.log("klick");
-        updateMenuItems();
-      } else if (selectSort.value === "högt") {
-        sortMenuHigh = true;
-        sortMenu = true;
-        updateMenuItems();
-        console.log("klick");
-      } else {
-        sortMenuHigh = false;
-        sortMenu = true;
-        updateMenuItems();
-        console.log("klick");
-      }
     });
 
     resetBtn.addEventListener("click", () => {
@@ -222,6 +160,73 @@ xhttp.onreadystatechange = function () {
         inSwedish();
       }
     });
+
+    selectSort.addEventListener("change", () => {
+      if (selectSort.value === "none") {
+        sortMenu = false;
+        console.log("klick");
+        updateMenuItems();
+      } else if (selectSort.value === "högt") {
+        sortMenuHigh = true;
+        sortMenu = true;
+        updateMenuItems();
+        console.log("klick");
+      } else {
+        sortMenuHigh = false;
+        sortMenu = true;
+        updateMenuItems();
+        console.log("klick");
+      }
+    });
+
+    // funktion för att ändra språk till engelska
+    function inEnglish() {
+      descriptionText.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+      nameText.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+      namnText.forEach((item) => {
+        item.classList.add("hidden");
+      });
+      beskrivningText.forEach((item) => {
+        item.classList.add("hidden");
+      });
+      document.getElementById("en").style.border = "solid 1px red";
+      document.getElementById("sv").style.border = "none";
+    }
+
+    //funktion för att ändra språk till svenska
+    function inSwedish() {
+      descriptionText.forEach((item) => {
+        item.classList.add("hidden");
+      });
+      nameText.forEach((item) => {
+        item.classList.add("hidden");
+      });
+      namnText.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+      beskrivningText.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+      document.getElementById("en").style.border = "none";
+      document.getElementById("sv").style.border = "solid 1px red";
+    }
+
+    //Funktion för att nolla alla filter
+    function resetAllFilter() {
+      menuTypeCheckboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+      allergyCheckboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+      selectSort.selectedIndex = 0;
+      sortMenu = false;
+      sortMenuHigh = false;
+    }
   }
 };
 

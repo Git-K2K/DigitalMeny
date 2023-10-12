@@ -99,6 +99,7 @@ body {
   top: 50px; /* Adjust the top position as needed */
   right: 70px; /* Adjust the right position as needed */
   z-index: 3;
+  border: solid 1px red;
 }
 
 #lucky-duck-logo {
@@ -125,14 +126,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-/* Styling for checkboxes, select, and button can be added as needed */
-
-/* Add styling for the language buttons here */
-
-/* Add styling for the logo here */
-
-/* Adjust styling as needed for your specific design */
 
 #resetBtn {
   width: 130px;
