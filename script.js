@@ -41,8 +41,9 @@ const languageSelect = document.getElementById("language");
 // Buttons
 const resetFiltersBtn = document.getElementById("reset-filters");
 
-// Language HTML elements
+// HTML elements
 const languageElements = document.querySelectorAll(".lang");
+const menuItemsDiv = document.querySelector(".menuItems");
 
 // FUNCTIONS
 
@@ -51,7 +52,7 @@ function printMenu() {
   let printedMenu = JSON.parse(JSON.stringify(menuJson));
 
   // Call the clearMenu function
-  clearMenu();
+  menuItemsDiv.innerHTML = "";
 
   // Sort the menu using the variable sortBy
   sortMenu(printedMenu, sortBy);
@@ -123,14 +124,6 @@ function filterAllergies(menu) {
   }
 
   return tempMenu;
-}
-
-// CLEAR the menu
-function clearMenu() {
-  const menuItems = document.querySelectorAll(".menuItem");
-  menuItems.forEach(function (item) {
-    item.remove();
-  });
 }
 
 // SORT the menu
