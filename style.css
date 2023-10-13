@@ -48,7 +48,6 @@ button:hover {
 select {
   min-width: 125px;
   max-width: 250px;
-  margin-bottom: 10px;
 }
 
 .filters {
@@ -105,6 +104,10 @@ img {
 
   .logo {
     align-items: center;
+  }
+
+  select {
+    margin-bottom: 10px;
   }
 }
 
