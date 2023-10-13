@@ -3,10 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meny <link rel="stylesheet" href="style.css"></title>
+    <link rel="stylesheet" href="style.css">
+  <title>Meny</title>
   </head>
   <body>
-    <div class="meny-items"></div>
-    <script src="./index.js"></script>
+    
+    <header>
+      <img src="images/Lucky_duck1.png" alt="Logo">
+      <h1>Lucky Ducky</h1>
+      
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="svenska">Svenska</option>
+        <option value="english">English</option>
+    </select>
+    </header>
+ 
+
+    <main>
+    <!-- En section kallad för left då det är panelen på vänster sida-->
+    <section class="left">
+      <div class="filtering">
+      <h2>Filters</h2>
+
+      <!-- En knapp som återställer alla filters inlagd i en funktion som heter "resetFilters"-->
+      <button class="resetbutton" onclick="resetFilters()">Återställ Filter</button>
+      
+      </div>
+      <hr>
+    
+      
+      <!-- Olika typer av rätter som är kopplade till checkboxes -->
+      <!-- Lagt in en data-type för att kunna manipulera checkboxarna med hjälp av javascript-->
+      <h3>Kötträtter</h3>
+      <input type="checkbox" id="meat1" class="input-check" typ="veg">
+      <label for="meat1" class="checkbox">Vegetariskt</label><br>
+      <input type="checkbox" id="meat2" class="input-check" typ="kyckling">
+      <label for="meat2" class="checkbox">Kyckling</label><br>
+      <input type="checkbox" id="meat3" class="input-check" typ="fläsk">
+      <label for="meat3" class="checkbox">Fläsk</label><br>
+      <input type="checkbox" id="meat4" class="input-check" typ="nöt">
+      <label for="meat4" class="checkbox">Nöt</label><br>
+      <input type="checkbox" id="meat5" class="input-check" typ="fisk">
+      <label for="meat5" class="checkbox">Fisk</label><br>
+    
+      <hr>
+    
+      <h3>Allergier</h3>
+      <input type="checkbox" id="meat6" class="input-check" typ="glutenfri">
+      <label for="meat6" class="checkbox">Gluten Fri</label><br>
+      <input type="checkbox" id="meat7" class="input-check" typ="laktosfri">
+      <label for="meat7" class="checkbox">Laktos Fri</label><br>
+   
+    
+      <hr>
+    
+      <h3>Sortera</h3>
+      <select name="combobox" id="sort">
+      <option value="Standard">Standard</option>
+      <option value="Lägst Pris">Lägst Pris</option>
+      <option value="Högst Pris">Högst Pris</option>
+      </select>
+      
+    </section>
+
+<!-- En section kallad för right då det är panelen på högra sidan-->
+    <section class="right">
+    
+      <div class="meny-items" id="menyyitems"></div>
+
+      
+    </section>
+   
+   
+  </main>
+  
+    
+    <script src="./script.js" type="module"></script>
   </body>
 </html>

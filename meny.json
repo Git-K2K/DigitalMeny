@@ -1,0 +1,114 @@
+ [
+    {
+      "namn": "FLÄSKFILÉPLANKA",
+      "name": "PORK TENDERLOIN PLANK STEAK",
+      "pris": 149,
+      "beskrivning": "Duchesse mos, rödvinssky, bearnaise och stekta grönsaker",
+      "description": "Duchesse potatoes, a redwine reduction, béarnaise and fried vegetables",
+      "typ": "fläsk",
+      "allergy": "none"
+    },
+
+    {
+      "namn": "BIFF RYDBERG",
+      "name": "BIFF RYDBERG",
+      "pris": 175,
+      "beskrivning": "Tärnad oxfilé, potatis och gullök, serveras med dijonsenapskräm och rå äggula",
+      "description": "Diced beef tenderloin, potatoes and onion, served with dijonmustard and raw egg yolk",
+      "typ": "nöt",
+      "allergy": "none"
+    },
+
+    {
+      "namn": "SPICY CHEESEBURGER",
+      "name": "SPICY CHEESEBURGER",
+      "pris": 155,
+      "beskrivning": "180gram högrevsburgare med sallad, tomat, picklade rödlök, cheddarost med jalapeños och barbecuesås i briochebröd med pommes och rökig ranch-aioli",
+      "description": "180gram prime rib burger with lettuce, tomato, pickled red onion, cheddar cheese with jalapeños and barbecue sauce in brioche bread with fries and smokey ranch-aioli",
+      " typ": "nöt",
+      "allergy": "gluten"
+    },
+
+    {
+      "namn": "HALLOUMI BURGARE",
+      "name": "HALLOUMI BURGER",
+      "pris": 155,
+      "beskrivning": "Sallad, tomat, rödlök och guacamole i briochebröd med pommes och aiol",
+      "description": "Lettuce, tomato, red onion and guacamole in brioche bread with fries and aioli",
+      "typ": "veg",
+      "allergy": ["gluten", "lactose"]
+    },
+
+    {
+      "namn": "FISH'N CHIPS",
+      "name": "FISH'N CHIPS",
+      "pris": 149,
+      "beskrivning": "'Beer-batter' panerad torskrygg med dill-aioli, halstrad citron och pommes",
+      "description": "Beer-batter breaded cod loins with dill-aioli, seared lemon and fries",
+      "typ": "fisk",
+      "allergy": "gluten"
+    },
+
+    {
+      "namn": "HUSETS SCHNITZEL",
+      "name": "SCHNITZEL",
+      "pris": 175,
+      "beskrivning": "200 gram välbankad schnitzel 'Borås största' med citron, kapris, anjovis, kryddsmör och rödvinssky serveras med stekt potatis",
+      "description": "200 grams of meat 'Borås biggest' served with lemon, capers, anchovy, herb butter and a redwine reduction with fried potatoes",
+      "typ": "fläsk",
+      "allergy": "gluten"
+    },
+
+    {
+      "namn": "CAESARSALLAD",
+      "name": "CAESAR SALAD",
+      "pris": 139,
+      "prishalv": 85,
+      "beskrivning": "Varm kyckling, bacon, krutonger, parmesan samt caesardressing",
+      "description": "Grilled chicken, bacon, croutons, parmesan and caesardressing",
+      "typ": "kyckling",
+      "allergy": "gluten"
+    },
+
+    {
+      "namn": "LAXSALLAD MED QUINOA",
+      "name": "SALMONSALLAD WITH QUINOA",
+      "pris": 159,
+      "beskrivning": "Grillad lax med quinoa, cocktailtomater, blandsallad, morot julienne, rödlök med en vinägrett",
+      "description": "Grilled salmon with quinoa, cocktail tomatoes, julianne carrot, mixed salad, red onion with vinegrette",
+      "typ": "fisk",
+      "allergy": "none"
+    },
+
+    {
+      "namn": "KRÄMIG KYCKLING PASTA",
+      "name": "CREAMY CHICKENPASTA",
+      "pris": 169,
+      "beskrivning": "Soltorkade tomater, basilika, grönsaker och parmesan",
+      "description": "Sundried tomatoes, basil, vegetables and parmesan",
+      "typ": "kyckling",
+      "allergy": ["gluten", "lactose"]
+    },
+
+    {
+      "namn": "MUSSLOR AL CAVA",
+      "name": "MUSSLES ÁL CAVA",
+      "pris": 189,
+      "prishalv": 109,
+      "beskrivning": "Ångkokta musslor i en krämig sås gjord på cava, toppas med cream fraîche och jalapeños, serveras med pommes och aioli",
+      "description": "Steamed mussels in a creamy cava sauce, topped with cream fraîche and jalapeños, served with fries and aioli",
+      "typ": "fisk",
+      "allergy": "lactose"
+    },
+
+    {
+      "namn": "GRILLAD OXFILE",
+      "name": "GRILLED BEEF TENDERLOIN",
+      "pris": 259,
+      "beskrivning": "200 gram oxfilé, rödvinssås, frästa grönsaker serveras med potatisgratäng (går att få med pommes och bearnaise) GRILLED BEEF TENDERLOIN ",
+      "description": "200 gram beef tenderloin, redwine reduction, fried vegetable and potato gratin (possible with fries and bearnaise)",
+      "typ": "nöt",
+      "allergy": "none"
+    }
+  ]
+

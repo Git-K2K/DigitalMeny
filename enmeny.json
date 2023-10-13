@@ -1,0 +1,68 @@
+[
+    {
+      "namn": "PORK FILLET PLANK",
+      "pris": 149,
+      "beskrivning": "Duchesse mash, red wine cloud, béarnaise and fried vegetables",
+      "typ": "fläsk"
+    },
+    {
+      "namn": "BIFF RYDBERG",
+      "pris": 175,
+      "beskrivning": "Diced beef fillet, potatoes and yellow onion, served with dijon mustard cream and raw egg yolk",
+      "typ": "fläsk"
+    },
+    {
+      "namn": "SPICY CHEESEBURGER",
+      "pris": 155,
+      "beskrivning": "180 gram prime rib burger with lettuce, tomato, pickled red onions, cheddar cheese with jalapeños and barbecue sauce in brioche bread with fries and smoky ranch aioli",
+      "typ": "nöt"
+    },
+    {
+      "namn": "HALLOUMI BURGER",
+      "pris": 155,
+      "beskrivning": "Lettuce, tomato, red onion and guacamole in brioche bread with fries and aiol",
+      "typ": "veg"
+    },
+    {
+      "namn": "FISH'N CHIPS",
+      "pris": 149,
+      "beskrivning": "\"Beer-batter\" breaded cod loin with dill aioli, grated lemon and fries",
+      "typ": "fisk"
+    },
+    {
+      "namn": "THE HOUSE SCHNITZEL",
+      "pris": 175,
+      "beskrivning": "200 grams well battered schnitzel \"Borås størdest\" with lemon, capers, anchovies, spiced butter and red wine sauce served with fried potatoes",
+      "typ": "fläsk"
+    },
+    {
+      "namn": "CAESAR SALAD",
+      "pris": 139,
+      "beskrivning": "Hot chicken, bacon, croutons, parmesan and caesar dressing",
+      "typ": "kyckling"
+    },
+    {
+      "namn": "SALMON SALAD WITH QUINOA",
+      "pris": 159,
+      "beskrivning": "Grilled salmon with quinoa, cocktail tomatoes, mixed salad, carrot julienne, red onion with a vinaigrette",
+      "typ": "fisk"
+    },
+    {
+      "namn": "CREAMY CHICKEN PASTA",
+      "pris": 169,
+      "beskrivning": "Sun-dried tomatoes, basil, vegetables and parmesan",
+      "typ": "kyckling"
+    },
+    {
+      "namn": "MUSSELS AL CAVA",
+      "pris": 189,
+      "beskrivning": "Steamed mussels in a creamy sauce made with cava, topped with crème fraîche and jalapeños, served with fries and aioli",
+      "typ": "fisk"
+    },
+    {
+      "namn": "GRILLED ROOF OF OX",
+      "pris": 259,
+      "beskrivning": "200 grams of beef fillet, red wine sauce, sauteed vegetables served with potato gratin (available with French fries and béarnaise) GRILLED BEEF TENDERLOIN ",
+      "typ": "nöt"
+    }
+  ]
