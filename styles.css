@@ -130,6 +130,7 @@ main {
 
 .menu-card img{
   height: 150px;
+  width: auto;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform .2s;
