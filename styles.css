@@ -14,7 +14,6 @@ h2 {
   padding: 10px;
   letter-spacing :0.1rem;
 }
-
 p {
   padding: 10px;
   letter-spacing :0.1rem;
@@ -32,7 +31,6 @@ body {
   flex-direction: column;
   font-family: Arial, sans-serif; 
 }
-
 /* Basic styling for the header */
 header {
   background-color: var(--color-bar);
@@ -41,7 +39,6 @@ header {
   width: 100%; 
   z-index: 100; 
 }
-
 nav {
   display: flex;
   justify-content: space-around;
@@ -49,7 +46,6 @@ nav {
   width: 100%; 
   gap: 20px;
 }
-
 .toggle-button{
   position:absolute;
   top: 0.73rem;
@@ -67,12 +63,10 @@ nav {
   background-color: #ffffff;
   border-radius: 10px;
 }
-
 .logo img{
   margin-top: 5px;
   height: 75px;
 }
-
 /* Styling for dropdowns */
 .language-dropdown,
 .food-type-dropdown,
@@ -85,7 +79,6 @@ nav {
 .language-dropdown label {
   margin-right: 10px;
 }
-
 /* Styling for select elements */
 select {
   padding: 5px;
@@ -96,7 +89,6 @@ select {
 select:hover{
   background-color: #aaaaaa;
 }
-
 /* Styling for the main content */
 main {
   margin-top: 78px;
@@ -108,14 +100,12 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .menu-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 50px;
 }
-
 /* Styling for individual menu cards */
 .menu-card {
   background-color:var(--color-card);
@@ -127,7 +117,6 @@ main {
   justify-items: center;
   align-items: center; 
 }
-
 .menu-card img{
   height: 150px;
   width: auto;
@@ -135,12 +124,10 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform .2s;
 }
-
 .menu-card img:hover{
   transform: scale(1.05);
   border: 1px solid black;
 }
-
 /* Styling for the footer */
 footer {
   background-color: var(--color-bar);
@@ -149,11 +136,9 @@ footer {
   text-align: center;
   width: 100%; 
 }
-
 .social-media {
   text-decoration: none;
-  margin-bottom: 10px;
-  
+  margin-bottom: 10px; 
 }
 .social-media a{
   text-decoration: none;
@@ -161,12 +146,10 @@ footer {
   color: #fff;
 }
 .social-media a:hover{
-  
   color: var(--color-card);
 }
 
 /* Responsive Styles */
-
 @media (max-width: 768px) {
   nav select{
     margin-top: 10px;
@@ -175,7 +158,6 @@ footer {
     padding-right: 40px;
   }
 }
-
 @media (max-width: 480px) {
   .toggle-button {
     display: flex;
@@ -208,7 +190,4 @@ main{
 .language-dropdown:active, .food-type-dropdown:active, .price-sort-dropdown:active, .allergy-dropdown:active{
   display: flex;
 }
-
 }
-
-

@@ -20,7 +20,6 @@ async function fetchMenuData() {
     }));
     applyFiltersAndSorting();
 }
-
 // Function to apply filters and sorting to the menu
 function applyFiltersAndSorting() {
     const selectedType = foodTypeSelect.value;
@@ -91,7 +90,6 @@ priceSortSelect.addEventListener('change', applyFiltersAndSorting);
 
 // Initial rendering of the menu
 fetchMenuData();
-
 
 // Function to update page content based on the selected language
 function updatePageContent(language) {
