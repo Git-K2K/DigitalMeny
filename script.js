@@ -1,70 +1,97 @@
 const menuContainer = document.getElementById('menu-container');
 const languageSelect = document.getElementById('language-select');
-const foodTypeSelect = document.getElementById('food-type-select');
 const priceSortSelect = document.getElementById('price-sort-select');
+const foodTypeSelect = document.getElementById('food-type-select');
 const allergySelect = document.getElementById('allergy-select');
 
- 
+let menuData = [];
+let selectedLanguage = 'en'; // Default to English
 
-//import file from json 
-import meny from'./svMeny.json' assert {type: "json"};
-import menu from'./enMenu.json' assert {type: "json"};
-
-// Function to populate the menu cards English
-function populateEnglishMenu(menuItems) {
-    menuContainer.innerHTML = ''; 
-    menuItems.forEach(item => {
-        const card = document.createElement('div');
-        card.classList.add('menu-card');
-        card.innerHTML = `
-            <img src=${item.img} alt="${item.name}"/>
-            <h2>${item.name}</h2>
-            <p>${item.description}</p>
-            <p id="priceElement">Price: ${item.price}kr</p>
-            <p>Type: ${item.type}</p>
-        `;
-        menuContainer.appendChild(card);
-    });
-}
-// Function to populate the menu cards Swedish
-function populateSwedishMenu(menuItems) {
-    menuContainer.innerHTML = ''; 
-    menuItems.forEach(item => {
-        const card = document.createElement('div');
-        card.classList.add('menu-card');
-        card.innerHTML = `
-            <img src=${item.img} alt="${item.name}"/>
-            <h2>${item.namn}</h2>
-            <p>${item.beskrivning}</p>
-            <p id="priceElement">Price: ${item.pris}Kr</p>
-            <p>Type: ${item.typ}</p>
-        `;
-        menuContainer.appendChild(card);
-    });
+// Fetch menu data based on language
+async function fetchMenuData() {
+    const response = await fetch('data.json');
+    const menuJson = await response.json();
+    menuData = selectedLanguage === 'en' ? menuJson : menuJson.map(item => ({
+        ...item,
+        name: item.namn,
+        price: item.pris,
+        description: item.beskrivning,
+        type: item.typ,
+    }));
+    applyFiltersAndSorting();
 }
 
-// Function to sort menu items by price
-function sortMenuByPrice(order) {
-    const sortedMenu = [...menu];
-    sortedMenu.sort((a, b) => {
-        if (order === 'asc') {
-            return a.price - b.price;
-        } else {
-            return b.price - a.price;
-        }
-    });
-    populateEnglishMenu(sortedMenu);
-}
-
-// Function to filter menu items by food type
-function filterMenuByType(type) {
-    if (type === 'all') {
-        populateEnglishMenu(menu);
-    } else {
-        const filteredMenu = menu.filter(item => item.type === type);
-        populateEnglishMenu(filteredMenu);
+// Function to apply filters and sorting to the menu
+function applyFiltersAndSorting() {
+    const selectedType = foodTypeSelect.value;
+    const selectedAllergy = allergySelect.value;
+    const selectedPrice = priceSortSelect.value;
+    
+    // Filter by type
+    let filteredMenu = menuData;
+    if (selectedType !== 'all') {
+        filteredMenu = filteredMenu.filter(item => item.type === selectedType);
     }
+    
+    // Filter by allergies
+    if (selectedAllergy !== 'none') {
+        const allergies = {
+            lactose: selectedAllergy === 'lactose',
+            gluten: selectedAllergy === 'gluten',
+        };
+        
+        filteredMenu = filteredMenu.filter(item => {
+            const itemAllergies = item.foodAllergies;
+            for (const allergen in allergies) {
+                if (allergies[allergen] && itemAllergies[allergen]) {
+                    return false;
+                }
+            }
+            return true;
+        });
+    }
+    // Sort by price
+    if (selectedPrice === 'asc') {
+        filteredMenu.sort((a, b) => a.price - b.price);
+    } else if (selectedPrice === 'desc') {
+        filteredMenu.sort((a, b) => b.price - a.price);
+    }
+    // Sort and render
+    sortAndRenderMenu(filteredMenu);
 }
+
+// Function to sort and render the menu
+function sortAndRenderMenu(menuItems) {
+    menuContainer.innerHTML = '';
+    menuItems.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('menu-card');
+        card.innerHTML = `
+            <img src=${item.img} alt="${item[selectedLanguage === 'en' ? 'name' : 'namn']}"/>
+            <h2>${item[selectedLanguage === 'en' ? 'name' : 'namn']}</h2>
+            <p>${item[selectedLanguage === 'en' ? 'description' : 'beskrivning']}</p>
+            <p id="priceElement">Price: ${item[selectedLanguage === 'en' ? 'price' : 'pris']}${selectedLanguage === 'en' ? 'kr' : 'Kr'}</p>
+            <p>Type: ${item[selectedLanguage === 'en' ? 'type' : 'typ']}</p>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
+
+// Event listener for language selection
+languageSelect.addEventListener('change', function () {
+    selectedLanguage = languageSelect.value;
+    applyFiltersAndSorting();
+    updatePageContent(selectedLanguage);
+});
+
+// Event listeners for filtering and sorting
+foodTypeSelect.addEventListener('change', applyFiltersAndSorting);
+allergySelect.addEventListener('change', applyFiltersAndSorting);
+priceSortSelect.addEventListener('change', applyFiltersAndSorting);
+
+// Initial rendering of the menu
+fetchMenuData();
+
 
 // Function to update page content based on the selected language
 function updatePageContent(language) {
@@ -123,76 +150,3 @@ function updatePageContent(language) {
         }
     }
 }
-
-// Function to filter menu items by food allergies
-function filterMenuByAllergies(allergies) {
-    const filteredMenu = menu.filter(item => {
-        // Check each item for allergies
-        const itemAllergies = item.foodAllergies;
-        for (const allergen in allergies) {
-            if (allergies[allergen] && itemAllergies[allergen]) {
-                return false; 
-            }
-        }
-        return true; 
-    });
-
-    populateEnglishMenu(filteredMenu);
-}
-
-// Event listener for language selection
-languageSelect.addEventListener('change', function () {
-    const selectedLanguage = languageSelect.value;
-    updatePageContent(selectedLanguage);
-    if (selectedLanguage === 'en') {
-        populateEnglishMenu(menu); // Use English menu data
-    } else if (selectedLanguage === 'sv') {
-        populateSwedishMenu(meny); // Use Swedish menu data
-    }
-});
-
-// Event listener for food type selection
-foodTypeSelect.addEventListener('change', function () {
-    const selectedType = foodTypeSelect.value;
-    filterMenuByType(selectedType);
-});
-
-// Event listener for price sorting
-priceSortSelect.addEventListener('change', function () {
-    const selectedOrder = priceSortSelect.value;
-    sortMenuByPrice(selectedOrder);
-});
-
-// Event listener for allergy selection
-
-allergySelect.addEventListener('change', function () {
-    const selectedAllergy = allergySelect.value;
-    
-    if (selectedAllergy === 'none') {
-        populateEnglishMenu(menu); // Show all menu items if "None" selected
-    } else {
-        // Create an object to represent selected allergies
-        const allergies = {
-            nuts: selectedAllergy === 'nuts',
-            dairy: selectedAllergy === 'dairy',
-            gluten: selectedAllergy === 'gluten',
-        };
-        filterMenuByAllergies(allergies);
-    }
-});
-
-// Initial population of the menu
-populateEnglishMenu(menu);
-
-//---------------------------------------------------------------
-// Get the toggle button and all dropdown elements (work with mobile size)
-const toggleButton = document.querySelector('.toggle-button');
-const dropdowns = document.querySelectorAll('.language-dropdown, .food-type-dropdown, .price-sort-dropdown, .allergy-dropdown');
-
-// Add a click event listener to the toggle button
-toggleButton.addEventListener('click', () => {
-  dropdowns.forEach(dropdown => {
-    dropdown.style.display = (dropdown.style.display === 'none' || !dropdown.style.display) ? 'flex' : '';
-    menuContainer.style.marginTop = (dropdown.style.display === 'flex') ? "200px" : "20px";
-    });  
-});

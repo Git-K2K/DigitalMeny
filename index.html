@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky Duck Menu</title>
+    <title>Restaurant Menu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="toggle-button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
             <div class="logo"><img src="./images/Lucky_duck2.png" alt=""></div>
             <div class="language-dropdown">
                 <label for="language-select" id="language-label">Language</label>
@@ -43,8 +38,7 @@
                 <label for="allergy-select" id="allergy-label">Filter by Allergies</label>
                 <select id="allergy-select">
                     <option value="none" id="allergy-none">None</option>
-                    <option value="nuts" id="allergy-nuts">Nuts</option>
-                    <option value="dairy" id="allergy-dairy">Dairy</option>
+                    <option value="lactose" id="allergy-lactose">Lactose</option>
                     <option value="gluten" id="allergy-gluten">Gluten</option>
                 </select>
             </div>
@@ -68,11 +62,9 @@
             <p>Address: Nasaret 111 11</p>
             <p>Sweden</p>
             <p>Telephone number: 000 00 00 000</p>
-            <span>&copy; Lucky Duck Menu</span>
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/4e4df2bb8b.js" crossorigin="anonymous"></script>
-    <!-- I add type="module" to work import from json -->
-    <script src="script.js" type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>
