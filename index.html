@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
       <div class="container header">
@@ -18,8 +19,9 @@
           />
           <h1>Lucky Duck</h1>
         </div>
+
+        <!-- Language selector -->
         <div class="language">
-          <!-- <label for="language">Select Language</label><br /> -->
           <label for="language" class="lang">Välj språk </label>
           <label for="language" class="lang hidden">Choose language </label>
           <select name="language" id="language">
@@ -29,9 +31,11 @@
         </div>
       </div>
     </header>
+
     <main>
       <div class="container">
         <div class="filters">
+          <!-- Category checkboxes -->
           <div class="categoryFilters">
             <h2 class="lang">Kategorier</h2>
             <h2 class="lang hidden">Categories</h2>
@@ -85,6 +89,7 @@
             <br />
           </div>
 
+          <!-- Allergy checkboxes -->
           <div class="allergyFilters">
             <h2 class="lang">Allergier</h2>
             <h2 class="lang hidden">Allergies</h2>
@@ -110,6 +115,7 @@
             ><br />
           </div>
 
+          <!-- Sorting selector -->
           <div class="sorting">
             <label for="sortBy" class="lang">Sortering</label>
             <label for="sortBy" class="lang hidden">Sort by</label><br />
@@ -126,6 +132,7 @@
             </select>
           </div>
 
+          <!-- Re-set filters button -->
           <div class="reset">
             <button type="button" id="reset-filters">
               <span class="lang">Nollställ filter</span
@@ -140,6 +147,7 @@
         </div>
       </div>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>

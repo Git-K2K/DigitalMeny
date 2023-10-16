@@ -1,5 +1,7 @@
+// Use JS strict mode
 "use strict";
 
+// Import menu from json-file
 let xmlhttp = new XMLHttpRequest();
 let menuJson = [];
 
@@ -12,12 +14,10 @@ xmlhttp.onreadystatechange = function () {
     printMenu();
   }
 };
-
 xmlhttp.open("GET", "menu.json", true);
 xmlhttp.send();
 
 // Global variables
-
 let anyCategoryChecked = false;
 let gluten = false;
 let lactose = false;
@@ -27,7 +27,6 @@ let printedMenu = [];
 let uncheckedCategories = [];
 
 // Category checkboxes
-const vegCheck = document.getElementById("vegCheck");
 const categoryCheckboxes = document.querySelectorAll(".category");
 
 // Allergies checkboxes
@@ -47,6 +46,7 @@ const menuItemsDiv = document.querySelector(".menuItems");
 
 // FUNCTIONS
 
+//
 function printMenu() {
   // Re-set printedMenu
   let printedMenu = JSON.parse(JSON.stringify(menuJson));
@@ -57,11 +57,12 @@ function printMenu() {
   // Sort the menu using the variable sortBy
   sortMenu(printedMenu, sortBy);
 
-  // Filter the menu
+  // Filter the menu on category checkboxes
   if (checkCategories()) {
     printedMenu = filterCategories(printedMenu);
   }
 
+  // Filter the menu on allergy checkboxes
   if (checkAllergies()) {
     printedMenu = filterAllergies(printedMenu);
   }
@@ -104,6 +105,7 @@ function printMenu() {
   }
 }
 
+// Filter a menu array by category
 function filterCategories(menu) {
   uncheckedCategories.forEach(function (category) {
     menu = menu.filter((menuItem) => menuItem.category !== category);
@@ -112,22 +114,22 @@ function filterCategories(menu) {
   return menu;
 }
 
+// Filter the menu array by allergies
 function filterAllergies(menu) {
-  let tempMenu = menu;
-
   if (lactose) {
-    tempMenu = tempMenu.filter((menuItem) => menuItem.lactoseFree);
+    menu = menu.filter((menuItem) => menuItem.lactoseFree);
   }
 
   if (gluten) {
-    tempMenu = tempMenu.filter((menuItem) => menuItem.glutenFree);
+    menu = menu.filter((menuItem) => menuItem.glutenFree);
   }
 
-  return tempMenu;
+  return menu;
 }
 
-// SORT the menu
+// Sort the menu based on the sortBy variable
 function sortMenu(menu, sortBy) {
+  // High to low
   if (sortBy === "priceHighLow") {
     printedMenu = menu.sort(function (a, b) {
       if (a.priceFull < b.priceFull) {
@@ -136,6 +138,7 @@ function sortMenu(menu, sortBy) {
         return -1;
       }
     });
+    // Low to high
   } else if (sortBy === "priceLowHigh") {
     printedMenu = menu.sort(function (a, b) {
       if (a.priceFull > b.priceFull) {
@@ -147,6 +150,7 @@ function sortMenu(menu, sortBy) {
   }
 }
 
+// Check if any of the category checkboxes are true
 function checkCategories() {
   let categoryCheckboxes = document.querySelectorAll(".category");
   let checked = false;
@@ -158,6 +162,7 @@ function checkCategories() {
   return checked;
 }
 
+// Check if any of the allery checkboxes are true
 function checkAllergies() {
   let categoryCheckboxes = document.querySelectorAll(".allergy");
   let checked = false;
@@ -169,6 +174,7 @@ function checkAllergies() {
   return checked;
 }
 
+// Re-set all filters and sorting
 function resetFilters() {
   // Uncheck all boxes
   const allCheckBoxes = document.querySelectorAll(".checkbox");
@@ -181,6 +187,7 @@ function resetFilters() {
   printMenu();
 }
 
+// Create an array with the values of all unchecked category boxes. Used to filter the menu.
 function getUncheckedCategories() {
   uncheckedCategories = [];
   categoryCheckboxes.forEach((box) => {
@@ -190,6 +197,7 @@ function getUncheckedCategories() {
   });
 }
 
+// Toggle the CSS hidden-class based on the language variable.
 function toggleLanguage() {
   languageElements.forEach((el) => {
     el.classList.toggle("hidden");
@@ -204,8 +212,10 @@ function toggleLanguage() {
 
 // EVENT LISTENERS
 
+// Category checkboxes
 categoryCheckboxes.forEach((box) => {
   box.addEventListener("change", function (event) {
+    // If the vegetarian option is selected, all other categories are unchecked
     if (event.target.value === "Veg" && event.target.checked) {
       document.getElementById("beefCheck").checked = false;
       document.getElementById("chickenCheck").checked = false;
@@ -217,25 +227,30 @@ categoryCheckboxes.forEach((box) => {
   });
 });
 
+// Lactose free checkbox
 lactoseCheck.addEventListener("change", function (event) {
   lactose = event.target.checked;
   printMenu();
 });
 
+// Gluten free checkbox
 glutenCheck.addEventListener("change", function (event) {
   gluten = event.target.checked;
   printMenu();
 });
 
+// Sorting selector
 sortBySelect.addEventListener("change", function (event) {
   sortBy = event.target.value;
   printMenu();
 });
 
+// Language selector
 languageSelect.addEventListener("change", function (event) {
   language = event.target.value;
   toggleLanguage();
   printMenu();
 });
 
+// Re-set filters button
 resetFiltersBtn.addEventListener("click", resetFilters);
