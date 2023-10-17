@@ -81,17 +81,6 @@ function printMenu() {
       `;
 
     menuItemsDiv.insertAdjacentHTML("beforeend", html);
-
-    // const noItemsParagraph = document.createElement("p");
-    // noItemsParagraph.classList.add("menuItem");
-    // if (language === "SWE") {
-    //   noItemsParagraph.textContent =
-    //     "Det finns inga rätter som matchar valda kriterier";
-    // } else {
-    //   noItemsParagraph.textContent =
-    //     "There are no options that match the selected criterias";
-    // }
-    // document.querySelector(".menuItems").appendChild(noItemsParagraph);
   } else {
     // Create HTML-elements for each menu item
     console.log(language);
@@ -113,26 +102,6 @@ function printMenu() {
       `;
 
       menuItemsDiv.insertAdjacentHTML("beforeend", html);
-
-      // const menuItemDiv = document.createElement("div");
-      // menuItemDiv.classList.add("menuItem");
-      // const menuItemTitle = document.createElement("h3");
-      // const menuDesctiption = document.createElement("p");
-      // if (language === "SWE") {
-      //   menuItemTitle.textContent = `${item.titleSWE} | ${item.priceFull} kr ${
-      //     item.priceHalf !== "" ? "(Halv " + item.priceHalf + " kr)" : ""
-      //   }`;
-      //   menuDesctiption.textContent = item.descriptionSWE;
-      // } else if (language === "ENG") {
-      //   menuItemTitle.textContent = `${item.titleENG} | ${item.priceFull} kr ${
-      //     item.priceHalf !== "" ? "(Half " + item.priceHalf + " kr)" : ""
-      //   }`;
-      //   menuDesctiption.textContent = item.descriptionENG;
-      // }
-      // menuItemDiv.appendChild(menuItemTitle);
-      // menuItemDiv.appendChild(menuDesctiption);
-
-      // document.querySelector(".menuItems").appendChild(menuItemDiv);
     });
   }
 }
