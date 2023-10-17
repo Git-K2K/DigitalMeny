@@ -8,14 +8,11 @@
 }
 
 body {
-  /* background: rgb(249, 231, 215); */
   background-image: url(./images/food2.jpg);
-  /* background-size: cover; */
   background-position: top left;
   padding-bottom: 30px;
   min-height: 100vh;
   max-height: 100%;
-  width: 100vw;
 }
 
 .container {
@@ -99,16 +96,15 @@ select {
 
 .menuItems {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 20px;
-  max-width: 80ch;
 }
+
 .menuItem {
   width: 50ch;
-  /* margin-bottom: 10px; */
-  padding: 20px 20px;
-  border-bottom: 1px solid darkgray;
-  border-right: 1px solid darkgray;
+  padding: 20px;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
   background-color: rgba(255, 255, 255, 0.97);
   border-radius: 8px;
   box-shadow: 3px 3px 10px 1px #636363;
@@ -118,7 +114,7 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(212, 212, 212);
+  border-bottom: 1px solid gray;
   margin-bottom: 10px;
 }
 
@@ -132,15 +128,11 @@ select {
   display: none;
 }
 
-@media (max-width: 800px) {
-  body {
-    width: 100vw;
-    /* font-size: 1.1rem; */
-  }
-
+@media (min-width: 320px) and (max-width: 700px) {
   .container {
-    width: 85%;
+    width: 90%;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
   }
 
@@ -158,6 +150,9 @@ select {
 
   .menuItems {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .menuItem {
@@ -179,5 +174,25 @@ select {
 
   .logo img {
     height: 100px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 901px) {
+  .container {
+    width: 75%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .menuItems {
+    width: 100%;
+  }
+  .menuItem {
+    width: 100%;
+  }
+  .filters {
+    position: static;
+    order: 5;
+    width: 100%;
   }
 }
