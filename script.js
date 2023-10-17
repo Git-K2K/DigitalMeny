@@ -43,6 +43,7 @@ const resetFiltersBtn = document.getElementById("reset-filters");
 // HTML elements
 const languageElements = document.querySelectorAll(".lang");
 const menuItemsDiv = document.querySelector(".menuItems");
+const languageFlag = document.querySelector(".lang-flag");
 
 // FUNCTIONS
 
@@ -98,8 +99,10 @@ function printMenu() {
       let html = `
         <div class="menuItem">
           <div class="title-and-price">
-            <h3>${language === "SWE" ? item.titleSWE : item.titleENG}</h3>
-            <h3><span class="half-price">${
+            <h3 class="title">${
+              language === "SWE" ? item.titleSWE : item.titleENG
+            }</h3>
+            <h3 class="price"><span class="half-price">${
               item.priceHalf ? "(1/2 " + item.priceHalf + "kr) " : ""
             }</span>${item.priceFull}kr</h3>
           </div>
@@ -234,8 +237,12 @@ function toggleLanguage() {
 
   if (language === "SWE") {
     document.documentElement.lang = "sv";
+    languageFlag.src = "./images/flag-SWE.png";
+    languageFlag.alt = "Svensk flagga";
   } else {
     document.documentElement.lang = "en";
+    languageFlag.src = "./images/flag-ENG.png";
+    languageFlag.alt = "United Kingdom flag";
   }
 }
 

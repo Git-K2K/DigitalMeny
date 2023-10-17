@@ -7,6 +7,177 @@
   box-sizing: border-box;
 }
 
+body {
+  /* background: rgb(249, 231, 215); */
+  background-image: url(./images/food2.jpg);
+  /* background-size: cover; */
+  background-position: top left;
+  padding-bottom: 30px;
+  min-height: 100vh;
+  max-height: 100%;
+  width: 100vw;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+header {
+  background-color: white;
+  border-bottom: 1px solid darkgray;
+  padding: 10px 0px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0px;
+  width: 100vw;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+}
+
+.language {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.filters {
+  position: sticky;
+  top: 100px;
+  min-width: 200px;
+  height: fit-content;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 8px;
+  border-bottom: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  box-shadow: 3px 3px 10px 1px #636363;
+  padding: 10px 0px 25px 25px;
+}
+
+.filters div {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.sort-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+button {
+  padding: 2px 5px;
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+}
+
+button:hover {
+  background: lightgray;
+}
+
+select {
+  padding: 0px 5px;
+}
+
+.menuItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 80ch;
+}
+.menuItem {
+  width: 50ch;
+  /* margin-bottom: 10px; */
+  padding: 20px 20px;
+  border-bottom: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px 1px #636363;
+}
+
+.title-and-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  margin-bottom: 10px;
+}
+
+.half-price {
+  font-size: 0.9rem;
+  color: #636363;
+  padding-right: 5px;
+}
+
 .hidden {
   display: none;
+}
+
+@media (max-width: 800px) {
+  body {
+    width: 100vw;
+    /* font-size: 1.1rem; */
+  }
+
+  .container {
+    width: 85%;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .header {
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .filters {
+    position: static;
+    order: 5;
+    width: 100%;
+  }
+
+  .menuItems {
+    width: 100%;
+  }
+
+  .menuItem {
+    width: 100%;
+  }
+
+  .title-and-price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .language {
+    margin-bottom: 5px;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .logo img {
+    height: 100px;
+  }
 }

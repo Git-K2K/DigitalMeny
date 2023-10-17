@@ -17,17 +17,24 @@
             alt="Lucky Duck Logo"
             height="60"
           />
-          <h1>Lucky Duck</h1>
+          <h1 class="hide-on-mobile">Lucky Duck</h1>
         </div>
 
         <!-- Language selector -->
         <div class="language">
-          <label for="language" class="lang">Välj språk </label>
-          <label for="language" class="lang hidden">Choose language </label>
+          <label for="language" class="lang">Välj språk: </label>
+          <label for="language" class="lang hidden">Choose language: </label>
           <select name="language" id="language">
             <option value="SWE">Svenska</option>
             <option value="ENG">English</option>
           </select>
+
+          <img
+            src="./images/flag-SWE.png"
+            alt="Swedish flag"
+            class="lang-flag"
+            height="22"
+          />
         </div>
       </div>
     </header>
@@ -117,8 +124,9 @@
 
           <!-- Sorting selector -->
           <div class="sorting">
-            <label for="sortBy" class="lang">Sortering</label>
-            <label for="sortBy" class="lang hidden">Sort by</label><br />
+            <label for="sortBy" class="sort-heading lang">Sortering</label>
+            <label for="sortBy" class="sort-heading lang hidden">Sort by</label
+            ><br />
             <select name="sortBy" id="sortBy">
               <option value="standard">Standard</option>
               <option value="priceLowHigh" class="lang">Pris, stigande</option>
