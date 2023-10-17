@@ -61,8 +61,8 @@
       "titleENG": "SCHNITZEL",
       "descriptionSWE": "200 gram välbankad schnitzel \"Borås största\" med citron, kapris, anjovis, kryddsmör och rödvinssky serveras med stekt potatis",
       "descriptionENG": "200 grams of meat \"Borås biggest\" served with lemon, capers, anchovy, herb butter and a redwine reduction with fried potatoes",
-      "priceHalf": 105,
-      "priceFull": 155,
+      "priceHalf": "",
+      "priceFull": 175,
       "glutenFree": false,
       "lactoseFree": false
     },
@@ -83,7 +83,7 @@
       "titleENG": "SALMONSALLAD WITH QUINOA",
       "descriptionSWE": "Grillad lax med quinoa, cocktailtomater, blandsallad, morot julienne, rödlök med en vinägrett",
       "descriptionENG": "Grilled salmon with quinoa, cocktail tomatoes, julianne carrot, mixed salad, red onion with vinegrette",
-      "priceHalf": 105,
+      "priceHalf": "",
       "priceFull": 155,
       "glutenFree": false,
       "lactoseFree": false

@@ -69,38 +69,67 @@ function printMenu() {
 
   // Generate message if no menu items match the filters
   if (printedMenu.length === 0) {
-    const noItemsParagraph = document.createElement("p");
-    noItemsParagraph.classList.add("menuItem");
-    if (language === "SWE") {
-      noItemsParagraph.textContent =
-        "Det finns inga rätter som matchar valda kriterier";
-    } else {
-      noItemsParagraph.textContent =
-        "There are no options that match the selected criterias";
-    }
-    document.querySelector(".menuItems").appendChild(noItemsParagraph);
+    let html = `
+        <div class="menuItem">
+          <p>${
+            language === "SWE"
+              ? "Det finns inga rätter som matchar valda kriterier"
+              : "There are no options that match the selected criterias"
+          }</p>
+        </div>
+      `;
+
+    menuItemsDiv.insertAdjacentHTML("beforeend", html);
+
+    // const noItemsParagraph = document.createElement("p");
+    // noItemsParagraph.classList.add("menuItem");
+    // if (language === "SWE") {
+    //   noItemsParagraph.textContent =
+    //     "Det finns inga rätter som matchar valda kriterier";
+    // } else {
+    //   noItemsParagraph.textContent =
+    //     "There are no options that match the selected criterias";
+    // }
+    // document.querySelector(".menuItems").appendChild(noItemsParagraph);
   } else {
     // Create HTML-elements for each menu item
+    console.log(language);
     printedMenu.forEach(function (item) {
-      const menuItemDiv = document.createElement("div");
-      menuItemDiv.classList.add("menuItem");
-      const menuItemTitle = document.createElement("h3");
-      const menuDesctiption = document.createElement("p");
-      if (language === "SWE") {
-        menuItemTitle.textContent = `${item.titleSWE} | ${item.priceFull} kr ${
-          item.priceHalf !== "" ? "(Halv " + item.priceHalf + " kr)" : ""
-        }`;
-        menuDesctiption.textContent = item.descriptionSWE;
-      } else if (language === "ENG") {
-        menuItemTitle.textContent = `${item.titleENG} | ${item.priceFull} kr ${
-          item.priceHalf !== "" ? "(Half " + item.priceHalf + " kr)" : ""
-        }`;
-        menuDesctiption.textContent = item.descriptionENG;
-      }
-      menuItemDiv.appendChild(menuItemTitle);
-      menuItemDiv.appendChild(menuDesctiption);
+      let html = `
+        <div class="menuItem">
+          <div class="title-and-price">
+            <h3>${language === "SWE" ? item.titleSWE : item.titleENG}</h3>
+            <h3><span class="half-price">${
+              item.priceHalf ? "(1/2 " + item.priceHalf + "kr) " : ""
+            }</span>${item.priceFull}kr</h3>
+          </div>
+          <p>${
+            language === "SWE" ? item.descriptionSWE : item.descriptionENG
+          }</p>
+        </div>
+      `;
 
-      document.querySelector(".menuItems").appendChild(menuItemDiv);
+      menuItemsDiv.insertAdjacentHTML("beforeend", html);
+
+      // const menuItemDiv = document.createElement("div");
+      // menuItemDiv.classList.add("menuItem");
+      // const menuItemTitle = document.createElement("h3");
+      // const menuDesctiption = document.createElement("p");
+      // if (language === "SWE") {
+      //   menuItemTitle.textContent = `${item.titleSWE} | ${item.priceFull} kr ${
+      //     item.priceHalf !== "" ? "(Halv " + item.priceHalf + " kr)" : ""
+      //   }`;
+      //   menuDesctiption.textContent = item.descriptionSWE;
+      // } else if (language === "ENG") {
+      //   menuItemTitle.textContent = `${item.titleENG} | ${item.priceFull} kr ${
+      //     item.priceHalf !== "" ? "(Half " + item.priceHalf + " kr)" : ""
+      //   }`;
+      //   menuDesctiption.textContent = item.descriptionENG;
+      // }
+      // menuItemDiv.appendChild(menuItemTitle);
+      // menuItemDiv.appendChild(menuDesctiption);
+
+      // document.querySelector(".menuItems").appendChild(menuItemDiv);
     });
   }
 }
@@ -248,6 +277,7 @@ sortBySelect.addEventListener("change", function (event) {
 // Language selector
 languageSelect.addEventListener("change", function (event) {
   language = event.target.value;
+
   toggleLanguage();
   printMenu();
 });
