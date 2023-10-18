@@ -12,7 +12,6 @@
     />
     <title>Lucky Duck Menu</title>
 
-
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -20,9 +19,7 @@
     <header>
       <div class="header">
         <a href="#" class="toggle-button">
-          <span class="bar"> </span>
-          <span class="bar"> </span>
-          <span class="bar"> </span>
+          <i class="fa-solid fa-filter" alt="Filter icon"></i>
         </a>
 
         <div class="logo">
@@ -44,10 +41,11 @@
           </select>
         </div>
         <div class="cart-btn" id="cartBtn">
-          <img
+          <i class="fa-solid fa-cart-shopping"></i>
+          <!-- <img
             src="./images/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"
             alt="ShoppingCart"
-          />
+          /> -->
           <p id="totalPrice"></p>
         </div>
       </div>
@@ -64,7 +62,7 @@
       <div class="container">
         <div id="filterBox" class="filters">
           <div class="filter-box">
-            <h3 class="filter-header">Filter</h3>
+            <h2 class="filter-header">Filters</h2>
             <button type="button" class="reset-button" id="reset-filters">
               <span class="lang">Rensa filter</span
               ><span class="lang hidden">Clear Filters</span>
@@ -173,9 +171,11 @@
               </select>
             </div>
             <div class="language desktop">
-              <label for="language" class="lang">Välj språk </label>
-              <label for="language" class="lang hidden">Choose language </label>
-              <select name="language" class="changeLanguage">
+              <label for="language1" class="lang">Välj språk </label>
+              <label for="language1" class="lang hidden"
+                >Choose language
+              </label>
+              <select name="language1" class="changeLanguage">
                 <option value="SWE">Svenska</option>
                 <option value="ENG">English</option>
               </select>
@@ -194,6 +194,10 @@
       <div class="footer"></div>
     </footer>
 
+    <script
+      src="https://kit.fontawesome.com/38b495a273.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>

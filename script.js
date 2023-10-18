@@ -9,6 +9,8 @@ xmlhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     var response = JSON.parse(this.responseText);
 
+    // Global variables
+
     const menuJson = response.menu;
     let anyCategoryChecked = false;
     let gluten = false;
@@ -17,6 +19,9 @@ xmlhttp.onreadystatechange = function () {
     let language = "SWE";
     let printedMenu = [];
     let uncheckedCategories = [];
+    let pickedItems = [];
+    let cart = [];
+    let total = 0;
 
     // Category checkboxes
     const categoryCheckboxes = document.querySelectorAll(".category");
@@ -37,9 +42,8 @@ xmlhttp.onreadystatechange = function () {
     // HTML elements
     let languageElements = document.querySelectorAll(".lang");
     const menuItemsDiv = document.querySelector(".menuItems");
-    let pickedItems = [];
-    let cart = [];
-    let total = 0;
+    const toggleButton = document.getElementsByClassName("toggle-button")[0];
+    const filterBox = document.getElementsByClassName("filters")[0];
 
     // FUNCTIONS
 
@@ -359,12 +363,12 @@ xmlhttp.onreadystatechange = function () {
     // Re-set filters button
     resetFiltersBtn.addEventListener("click", resetFilters);
 
-    // hamburger menu
-    const toggleButton = document.getElementsByClassName("toggle-button")[0];
-    const filterBox = document.getElementsByClassName("filters")[0];
-
+    // Filter button
     toggleButton.addEventListener("click", () => {
       filterBox.classList.toggle("active");
+      toggleButton.innerHTML = filterBox.classList.contains("active")
+        ? `<i class="fa-solid fa-xmark test" alt="Close icon"></i>`
+        : `<i class="fa-solid fa-filter test" alt="Close icon"></i>`;
       if (cartDropDown.classList.contains("active")) {
         cartDropDown.classList.toggle("active");
       }
@@ -386,5 +390,3 @@ xmlhttp.onreadystatechange = function () {
 };
 xmlhttp.open("GET", "menu.json", true);
 xmlhttp.send();
-
-// Global variables
