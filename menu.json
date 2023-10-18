@@ -1,6 +1,7 @@
 {
   "menu": [
     {
+      "id": 1,
       "category": "Pork",
       "titleSWE": "FLÄSKFILÉPLANKA",
       "titleENG": "PORK TENDERLOIN PLANK STEAK",
@@ -9,9 +10,11 @@
       "priceHalf": "",
       "priceFull": 149,
       "glutenFree": true,
-      "lactoseFree": false
+      "lactoseFree": false,
+      "img": "./images/PORK_FILLET_PLATTER.jpg"
     },
     {
+      "id": 2,
       "category": "Beef",
       "titleSWE": "BIFF RYDBERG",
       "titleENG": "BIFF RYDBERG",
@@ -20,9 +23,11 @@
       "priceHalf": "",
       "priceFull": 175,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/RYDBERG_BEEF.jpeg"
     },
     {
+      "id": 3,
       "category": "Beef",
       "titleSWE": "SPICY CHEESEBURGER",
       "titleENG": "SPICY CHEESEBURGER",
@@ -31,9 +36,11 @@
       "priceHalf": "",
       "priceFull": 155,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/SPICY_CHEESEBURGER.jpeg"
     },
     {
+      "id": 4,
       "category": "Veg",
       "titleSWE": "HALLOUMI BURGARE",
       "titleENG": "HALLOUMI BURGER",
@@ -42,9 +49,11 @@
       "priceHalf": "",
       "priceFull": 155,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/HALLOUMI_BURGER.jpeg"
     },
     {
+      "id": 5,
       "category": "Fish",
       "titleSWE": "FISH'N CHIPS",
       "titleENG": "FISH'N CHIPS",
@@ -53,9 +62,11 @@
       "priceHalf": "",
       "priceFull": 149,
       "glutenFree": false,
-      "lactoseFree": false
+      "lactoseFree": false,
+      "img": "./images/FISH_AND_CHIPS.jpeg"
     },
     {
+      "id": 6,
       "category": "Pork",
       "titleSWE": "HUSETS SCHNITZEL",
       "titleENG": "SCHNITZEL",
@@ -64,9 +75,11 @@
       "priceHalf": 105,
       "priceFull": 155,
       "glutenFree": false,
-      "lactoseFree": false
+      "lactoseFree": false,
+      "img": "./images/HOUSE_SCHNITZEL.jpeg"
     },
     {
+      "id": 7,
       "category": "Chicken",
       "titleSWE": "CAESARSALLAD",
       "titleENG": "CAESARSALLAD",
@@ -75,9 +88,11 @@
       "priceHalf": 85,
       "priceFull": 139,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/CAESAR_SALAD.jpeg"
     },
     {
+      "id": 8,
       "category": "Fish",
       "titleSWE": "LAXSALLAD MED QUINOA",
       "titleENG": "SALMONSALLAD WITH QUINOA",
@@ -86,9 +101,11 @@
       "priceHalf": 105,
       "priceFull": 155,
       "glutenFree": false,
-      "lactoseFree": false
+      "lactoseFree": false,
+      "img": "./images/SALMON_SALAD_WITH_QUINOA.jpeg"
     },
     {
+      "id": 9,
       "category": "Chicken",
       "titleSWE": "KRÄMIG KYCKLING PASTA",
       "titleENG": "CREAMY CHICKENPASTA",
@@ -97,9 +114,11 @@
       "priceHalf": "",
       "priceFull": 169,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/CREAMY_CHICKEN_PASTA.jpeg"
     },
     {
+      "id": 10,
       "category": "Fish",
       "titleSWE": "MUSSLOR AL CAVA",
       "titleENG": "MUSSLES ÁL CAVA",
@@ -108,9 +127,11 @@
       "priceHalf": 109,
       "priceFull": 189,
       "glutenFree": false,
-      "lactoseFree": true
+      "lactoseFree": true,
+      "img": "./images/MUSSELS_AL_CAVA.jpeg"
     },
     {
+      "id": 11,
       "category": "Beef",
       "titleSWE": "GRILLAD OXFILE",
       "titleENG": "GRILLED BEEF TENDERLOIN",
@@ -119,7 +140,8 @@
       "priceHalf": "",
       "priceFull": 259,
       "glutenFree": false,
-      "lactoseFree": false
+      "lactoseFree": false,
+      "img": "./images/GRILLED_BEEF_TENDERLOIN.jpeg"
     }
   ]
 }
