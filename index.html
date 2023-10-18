@@ -4,37 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Love+Ya+Like+A+Sister&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header>
-      <div class="container header">
+      <div class="header">
+        <a href="#" class="toggle-button">
+          <span class="bar"> </span>
+          <span class="bar"> </span>
+          <span class="bar"> </span>
+        </a>
+
         <div class="logo">
           <img
             src="./images/lucky_duck.png"
             alt="Lucky Duck Logo"
-            height="60"
+            height="70"
           />
         </div>
         <div class="header-heading"><h1>Lucky Duck</h1></div>
 
         <!-- Language selector -->
-        <div class="language">
+        <div class="language mobile">
           <label for="language" class="lang">Välj språk </label>
           <label for="language" class="lang hidden">Choose language </label>
-          <select name="language" id="language">
+          <select name="language" class="changeLanguage">
             <option value="SWE">Svenska</option>
             <option value="ENG">English</option>
           </select>
         </div>
+        <div class="cart-btn" id="cartBtn">
+          <img
+            src="./images/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"
+            alt="ShoppingCart"
+          />
+          <p id="totalPrice"></p>
+        </div>
+      </div>
+      <div class="cart-dropdown" id="cartDropDown">
+        <div id="cartList">
+          <p class="lang">Inga produkter i varukorgen</p>
+          <p class="lang hidden">No items in cart</p>
+        </div>
+        <button class="empty-cart-btn" id="emptyCartBtn">Empty cart</button>
       </div>
     </header>
 
     <main>
       <div class="container">
-        <div class="filters">
+        <div id="filterBox" class="filters">
+          <div class="filter-box">
+            <h3 class="filter-header">Filter</h3>
+            <button type="button" class="reset-button" id="reset-filters">
+              <span class="lang">Rensa filter</span
+              ><span class="lang hidden">Clear Filters</span>
+            </button>
+          </div>
+
           <!-- Category checkboxes -->
           <div class="categoryFilters">
             <h2 class="lang">Kategorier</h2>
@@ -46,8 +80,8 @@
               name="Vegetarian"
               value="Veg"
             />
-            <label for="vegCheck" class="lang"> Vegetarisk</label>
-            <label for="vegCheck" class="lang hidden"> Vegetarian</label><br />
+            <label for="vegCheck" class="lang">Vegetarisk</label>
+            <label for="vegCheck" class="lang hidden">Vegetarian</label><br />
             <input
               type="checkbox"
               class="checkbox category"
@@ -55,8 +89,9 @@
               name="Beef"
               value="Beef"
             />
-            <label for="beefCheck" class="lang"> Nöt</label
-            ><label for="beefCheck" class="lang hidden"> Beef</label><br />
+
+            <label for="beefCheck" class="lang"> Nöt</label>
+            <label for="beefCheck" class="lang hidden">Beef</label><br />
             <input
               type="checkbox"
               class="checkbox category"
@@ -75,8 +110,8 @@
               value="Fish"
             />
             <label for="fishCheck" class="lang"> Fisk</label>
-            <label for="fishCheck" class="lang hidden"> Fish</label>
-            <br />
+            <label for="fishCheck" class="lang hidden"> Fish</label><br />
+
             <input
               type="checkbox"
               class="checkbox category"
@@ -86,7 +121,6 @@
             />
             <label for="porkCheck" class="lang"> Fläsk</label>
             <label for="porkCheck" class="lang hidden"> Pork</label>
-            <br />
           </div>
 
           <!-- Allergy checkboxes -->
@@ -117,33 +151,40 @@
 
           <!-- Sorting selector -->
           <div class="sorting">
-            <label for="sortBy" class="lang">Sortering</label>
-            <label for="sortBy" class="lang hidden">Sort by</label><br />
-            <select name="sortBy" id="sortBy">
-              <option value="standard">Standard</option>
-              <option value="priceLowHigh" class="lang">Pris, stigande</option>
-              <option value="priceLowHigh" class="lang hidden">
-                Price, ascending
-              </option>
-              <option value="priceHighLow" class="lang">Pris, fallande</option>
-              <option value="priceHighLow" class="lang hidden">
-                Price, descending
-              </option>
-            </select>
-          </div>
-
-          <!-- Re-set filters button -->
-          <div class="reset">
-            <button type="button" id="reset-filters">
-              <span class="lang">Nollställ filter</span
-              ><span class="lang hidden">Reset Filters</span>
-            </button>
+            <div class="sort-price">
+              <label for="sortBy" class="lang">Sortering</label>
+              <label for="sortBy" class="lang hidden">Sort by</label><br />
+              <select name="sortBy" id="sortBy">
+                <option value="standard">Standard</option>
+                <option value="priceLowHigh" class="lang">
+                  Pris, stigande
+                </option>
+                <option value="priceLowHigh" class="lang hidden">
+                  Price, ascending
+                </option>
+                <option value="priceHighLow" class="lang">
+                  Pris, fallande
+                </option>
+                <option value="priceHighLow" class="lang hidden">
+                  Price, descending
+                </option>
+              </select>
+            </div>
+            <div class="language desktop">
+              <label for="language" class="lang">Välj språk </label>
+              <label for="language" class="lang hidden">Choose language </label>
+              <select name="language" class="changeLanguage">
+                <option value="SWE">Svenska</option>
+                <option value="ENG">English</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="menu">
           <div class="menuItems">
             <!-- JS-generated menuItem(s) are inserted here -->
           </div>
+          <div class="menuItems2"></div>
         </div>
       </div>
     </main>
