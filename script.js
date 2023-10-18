@@ -365,6 +365,9 @@ xmlhttp.onreadystatechange = function () {
 
     toggleButton.addEventListener("click", () => {
       filterBox.classList.toggle("active");
+      if (cartDropDown.classList.contains("active")) {
+        cartDropDown.classList.toggle("active");
+      }
     });
 
     const cartBtn = document.getElementsByClassName("cart-btn")[0];
@@ -372,6 +375,10 @@ xmlhttp.onreadystatechange = function () {
 
     cartBtn.addEventListener("click", () => {
       cartDropDown.classList.toggle("active");
+
+      if (filterBox.classList.contains("active")) {
+        filterBox.classList.toggle("active");
+      }
     });
 
     printMenu();
