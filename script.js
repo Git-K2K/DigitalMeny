@@ -142,13 +142,11 @@ xmlhttp.onreadystatechange = function () {
 
       populateCart();
 
-      const emptyCartBtn1HTML = document.getElementById("emptyCartBtn1");
-      const emptyCartBtn2HTML = document.getElementById("emptyCartBtn2");
       emptyCartBtnHTML.addEventListener("click", () => {
         console.log("click");
         cart.length = 0;
         pickedItems.length = 0;
-        const cartHTML = document.getElementById("totalPrice");
+        const cartHTML = document.getElementById("totalItems");
         populateCart();
         cartHTML.innerHTML = "";
       });
@@ -160,7 +158,7 @@ xmlhttp.onreadystatechange = function () {
 
         let totalItems = cart.length;
 
-        const cartHTML = document.getElementById("totalPrice");
+        const cartHTML = document.getElementById("totalItems");
         cartHTML.innerHTML = `<p class="total-price">  ${totalItems}</p>`;
 
         const cartList = document.getElementById("cartList");
@@ -169,6 +167,7 @@ xmlhttp.onreadystatechange = function () {
         if (language === "SWE") {
           if (cart.length === 0) {
             let listItem = document.createElement("div");
+            cartHTML.innerHTML = "";
 
             listItem.innerHTML = `<p>Inga produkter i varukorgen</p>`;
 
@@ -186,6 +185,7 @@ xmlhttp.onreadystatechange = function () {
         } else {
           if (cart.length === 0) {
             let listItem = document.createElement("div");
+            cartHTML.innerHTML = "";
 
             listItem.innerHTML = `<p>No items in cart</p>`;
 
