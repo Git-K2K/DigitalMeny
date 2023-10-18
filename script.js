@@ -91,7 +91,7 @@ xmlhttp.onreadystatechange = function () {
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
             }</p><button value="${
               item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleSWE}"></div>`;
           } else if (language === "ENG") {
@@ -103,7 +103,7 @@ xmlhttp.onreadystatechange = function () {
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
             }</p><button value="${
               item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleENG}"></div>`;
           }
@@ -137,7 +137,8 @@ xmlhttp.onreadystatechange = function () {
 
       populateCart();
 
-      const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+      const emptyCartBtn1HTML = document.getElementById("emptyCartBtn1");
+      const emptyCartBtn2HTML = document.getElementById("emptyCartBtn2");
       emptyCartBtnHTML.addEventListener("click", () => {
         console.log("click");
         cart.length = 0;
@@ -305,7 +306,7 @@ xmlhttp.onreadystatechange = function () {
 
     // EVENT LISTENERS
 
-    const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+    const emptyCartBtnHTML = document.getElementById("emptyCartBtn1");
     emptyCartBtnHTML.addEventListener("click", () => {
       const cartList = document.getElementById("cartList");
       console.log(cartList);
@@ -381,3 +382,4 @@ xmlhttp.open("GET", "menu.json", true);
 xmlhttp.send();
 
 // Global variables
+

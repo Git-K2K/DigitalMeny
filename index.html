@@ -36,12 +36,28 @@
 
         <!-- Language selector -->
         <div class="language mobile">
-          <label for="language" class="lang">Välj språk </label>
-          <label for="language" class="lang hidden">Choose language </label>
+          <div class="langlogos">
+          <img
+          src="./images/flag-SWE.png"
+          alt="Swedish flag"
+          class="lang"
+          height="30"
+        />
+        <img
+          src="./images/flag-ENG.png"
+          alt="English flag"
+          class="lang hidden"
+          height="30"
+        />
+      </div>
+      <label for="language" class="lang" lang="sv" alt="språk">Välj Språk: </label>
+      <label for="language" class="lang hidden" lang="en" alt="language">Choose Language: </label>
           <select name="language" class="changeLanguage">
-            <option value="SWE">Svenska</option>
-            <option value="ENG">English</option>
+          <option value="SWE">Svenska</option>
+          <option value="ENG">English</option>
           </select>
+         
+         
         </div>
         <div class="cart-btn" id="cartBtn">
           <img
@@ -56,7 +72,8 @@
           <p class="lang">Inga produkter i varukorgen</p>
           <p class="lang hidden">No items in cart</p>
         </div>
-        <button class="empty-cart-btn" id="emptyCartBtn">Empty cart</button>
+        <button class="empty-cart-btn lang" id="emptyCartBtn1">Töm Kundvagn</button>
+        <button class="empty-cart-btn lang hidden" id="emptyCartBtn2">Empty cart</button>
       </div>
     </header>
 
@@ -156,6 +173,7 @@
             <div class="sort-price">
               <label for="sortBy" class="lang">Sortering</label>
               <label for="sortBy" class="lang hidden">Sort by</label><br />
+              
               <select name="sortBy" id="sortBy">
                 <option value="standard">Standard</option>
                 <option value="priceLowHigh" class="lang">
@@ -173,8 +191,8 @@
               </select>
             </div>
             <div class="language desktop">
-              <label for="language" class="lang">Välj språk </label>
-              <label for="language" class="lang hidden">Choose language </label>
+              <label for="language" class="lang" lang="sv" alt="språk">Välj Språk: </label>
+      <label for="language" class="lang hidden" lang="en" alt="language">Choose Language: </label>
               <select name="language" class="changeLanguage">
                 <option value="SWE">Svenska</option>
                 <option value="ENG">English</option>
