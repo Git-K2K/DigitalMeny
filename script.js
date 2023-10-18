@@ -95,7 +95,7 @@ xmlhttp.onreadystatechange = function () {
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
             }</p><button value="${
               item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleSWE}"></div>`;
           } else if (language === "ENG") {
@@ -107,7 +107,7 @@ xmlhttp.onreadystatechange = function () {
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
             }</p><button value="${
               item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleENG}"></div>`;
           }
@@ -141,7 +141,8 @@ xmlhttp.onreadystatechange = function () {
 
       populateCart();
 
-      const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+      const emptyCartBtn1HTML = document.getElementById("emptyCartBtn1");
+      const emptyCartBtn2HTML = document.getElementById("emptyCartBtn2");
       emptyCartBtnHTML.addEventListener("click", () => {
         console.log("click");
         cart.length = 0;
@@ -321,24 +322,14 @@ xmlhttp.onreadystatechange = function () {
 
     // EVENT LISTENERS
 
-    // const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
-    // emptyCartBtnHTML.addEventListener("click", () => {
-    //   const cartList = document.getElementById("cartList");
-
-    //   cartList.innerHTML = "";
-
-    //   populateCart();
-
-    //   if (language === "SWE") {
-    //     let listItem = document.createElement("p");
-    //     listItem.innerHTML = `Inga produkter i varukorgen`;
-    //     cartList.appendChild(listItem);
-    //   } else {
-    //     let listItem = document.createElement("p");
-    //     listItem.innerHTML = `No items in cart`;
-    //     cartList.appendChild(listItem);
-    //   }
-    // });
+    const emptyCartBtnHTML = document.getElementById("emptyCartBtn1");
+    emptyCartBtnHTML.addEventListener("click", () => {
+      const cartList = document.getElementById("cartList");
+      console.log(cartList);
+      let listItem = document.createElement("li");
+      listItem.innerHTML = `No items selected`;
+      cartList.appendChild(listItem);
+    });
 
     // Category checkboxes
     categoryCheckboxes.forEach((box) => {
