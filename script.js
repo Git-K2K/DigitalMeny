@@ -146,22 +146,20 @@ xmlhttp.onreadystatechange = function () {
         console.log("click");
         cart.length = 0;
         pickedItems.length = 0;
-        console.log(cart);
-        const cartList = document.getElementById("cartList");
-        console.log(cartList);
-        let listItem = document.createElement("li");
-        listItem.innerHTML = `No items selected`;
-        cartList.appendChild(listItem);
+        const cartHTML = document.getElementById("totalPrice");
         populateCart();
+        cartHTML.innerHTML = "";
       });
 
       function populateCart() {
         total = cart.reduce(function (total, currentValue) {
           return total + currentValue.priceFull;
         }, 0);
+
+        let totalItems = cart.length;
+
         const cartHTML = document.getElementById("totalPrice");
-        cartHTML.innerHTML = `<p class="total-price">${total} kr</p>`;
-        console.log(total);
+        cartHTML.innerHTML = `<p class="total-price">  ${totalItems}</p>`;
 
         const cartList = document.getElementById("cartList");
         cartList.innerHTML = "";
@@ -177,8 +175,8 @@ xmlhttp.onreadystatechange = function () {
             cart.forEach(function (item) {
               let listItem = document.createElement("div");
 
-              listItem.innerHTML = `<p class="lang">${item.titleSWE} Pris: ${item.priceFull} kr</p> 
-              <p class="lang hidden">${item.titleENG} Price: ${item.priceFull}</p>`;
+              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleSWE}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
+              <p class="lang hidden">${item.titleENG}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
 
               cartList.appendChild(listItem);
             });
@@ -190,16 +188,30 @@ xmlhttp.onreadystatechange = function () {
             listItem.innerHTML = `<p>No items in cart</p>`;
 
             cartList.appendChild(listItem);
+          } else {
+            cart.forEach(function (item) {
+              let listItem = document.createElement("div");
+
+              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleENG}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
+              <p class="lang hidden">${item.titleSWE}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
+
+              cartList.appendChild(listItem);
+            });
           }
-          cart.forEach(function (item) {
-            let listItem = document.createElement("div");
-
-            listItem.innerHTML = `<p class="lang hidden">${item.titleSWE} Pris: ${item.priceFull} kr</p><p class="lang" >${item.titleENG} Price: ${item.priceFull}</p>`;
-
-            cartList.appendChild(listItem);
-          });
         }
       }
+
+      let cartTotals = document.createElement("div");
+      cartTotals.classList.add("cart-item-div");
+      cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${total} kr</p>`;
+      cartList.appendChild(cartTotals);
+
+      languageSelect.forEach((item) => {
+        item.addEventListener("change", function (event) {
+          language = event.target.value;
+          populateCart();
+        });
+      });
     }
 
     // Filter a menu array by category
@@ -309,14 +321,24 @@ xmlhttp.onreadystatechange = function () {
 
     // EVENT LISTENERS
 
-    const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
-    emptyCartBtnHTML.addEventListener("click", () => {
-      const cartList = document.getElementById("cartList");
-      console.log(cartList);
-      let listItem = document.createElement("li");
-      listItem.innerHTML = `No items selected`;
-      cartList.appendChild(listItem);
-    });
+    // const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+    // emptyCartBtnHTML.addEventListener("click", () => {
+    //   const cartList = document.getElementById("cartList");
+
+    //   cartList.innerHTML = "";
+
+    //   populateCart();
+
+    //   if (language === "SWE") {
+    //     let listItem = document.createElement("p");
+    //     listItem.innerHTML = `Inga produkter i varukorgen`;
+    //     cartList.appendChild(listItem);
+    //   } else {
+    //     let listItem = document.createElement("p");
+    //     listItem.innerHTML = `No items in cart`;
+    //     cartList.appendChild(listItem);
+    //   }
+    // });
 
     // Category checkboxes
     categoryCheckboxes.forEach((box) => {
@@ -357,6 +379,7 @@ xmlhttp.onreadystatechange = function () {
         language = event.target.value;
         toggleLanguage();
         printMenu();
+        populateCart();
       });
     });
 

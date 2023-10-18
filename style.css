@@ -48,7 +48,7 @@ select {
 }
 
 #cartBtn {
-  /* position: absolute; */
+  position: absolute;
   right: 30px;
   display: flex;
   padding: 10px;
@@ -66,13 +66,17 @@ select {
 }
 
 .total-price {
+  padding-left: 10px;
   text-align: center;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .cart-dropdown {
   position: fixed;
   min-height: 300px;
-  width: 220px;
+  width: 400px;
+  padding: 20px;
   background-color: #ffffff;
   right: 10px;
   display: none;
@@ -90,6 +94,36 @@ select {
 .cart-dropdown li {
   font-size: 14px;
   padding-bottom: 3px;
+}
+
+.cart-header {
+  padding: 10px 10px 10px 0px;
+}
+
+.cart-pris {
+  font-weight: 700;
+}
+
+.cart-total {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#cartList p {
+  padding-bottom: 5px;
+}
+
+#cartList > div {
+  justify-content: space-between;
+  border-bottom: solid rgb(186, 186, 186) 1px;
+}
+
+.cart-item-div {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 100%;
 }
 
 i {

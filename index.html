@@ -32,7 +32,7 @@
         <div class="header-heading"><h1>Lucky Duck</h1></div>
 
         <!-- Language selector -->
-        <div class="language mobile">
+        <!-- <div class="language mobile">
           <label for="languageSelect"
             ><span class="lang">Välj språk</span
             ><span class="lang hidden">Choose language</span></label
@@ -45,7 +45,7 @@
             <option value="SWE" lang="sv">Svenska</option>
             <option value="ENG" lang="en">English</option>
           </select>
-        </div>
+        </div> -->
         <div class="cart-btn" id="cartBtn">
           <i class="fa-solid fa-cart-shopping"></i>
           <!-- <img
@@ -56,6 +56,10 @@
         </div>
       </div>
       <div class="cart-dropdown" id="cartDropDown">
+        <div class="cart-header">
+          <h2 class="lang">Varukorg</h2>
+          <h2 class="lang hidden">Cart</h2>
+        </div>
         <div id="cartList">
           <p class="lang">Inga produkter i varukorgen</p>
           <p class="lang hidden">No items in cart</p>
@@ -176,18 +180,18 @@
                 </option>
               </select>
             </div>
-            <div class="language desktop"
-              <label for="languageSelectMobile" class="lang"
+            <div class="language">
+              <label for="languageSelect"
                 ><span class="lang">Välj språk</span
                 ><span class="lang hidden">Choose language</span></label
               ><br />
               <select
-                id="languageSelectMobile"
-                name="language"
+                id="languageSelect"
+                name="languageSelect"
                 class="changeLanguage"
               >
-                <option value="SWE">Svenska</option>
-                <option value="ENG">English</option>
+                <option value="SWE" lang="sv">Svenska</option>
+                <option value="ENG" lang="en">English</option>
               </select>
             </div>
           </div>
