@@ -33,11 +33,17 @@
 
         <!-- Language selector -->
         <div class="language mobile">
-          <label for="language" class="lang">Välj språk </label>
-          <label for="language" class="lang hidden">Choose language </label>
-          <select name="language" class="changeLanguage">
-            <option value="SWE">Svenska</option>
-            <option value="ENG">English</option>
+          <label for="languageSelect"
+            ><span class="lang">Välj språk</span
+            ><span class="lang hidden">Choose language</span></label
+          >
+          <select
+            id="languageSelect"
+            name="languageSelect"
+            class="changeLanguage"
+          >
+            <option value="SWE" lang="sv">Svenska</option>
+            <option value="ENG" lang="en">English</option>
           </select>
         </div>
         <div class="cart-btn" id="cartBtn">
@@ -170,12 +176,16 @@
                 </option>
               </select>
             </div>
-            <div class="language desktop">
-              <label for="language1" class="lang">Välj språk </label>
-              <label for="language1" class="lang hidden"
-                >Choose language
-              </label>
-              <select name="language1" class="changeLanguage">
+            <div class="language desktop"
+              <label for="languageSelectMobile" class="lang"
+                ><span class="lang">Välj språk</span
+                ><span class="lang hidden">Choose language</span></label
+              ><br />
+              <select
+                id="languageSelectMobile"
+                name="language"
+                class="changeLanguage"
+              >
                 <option value="SWE">Svenska</option>
                 <option value="ENG">English</option>
               </select>
