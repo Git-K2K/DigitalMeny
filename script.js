@@ -3,7 +3,6 @@
 
 // Import menu from json-file
 let xmlhttp = new XMLHttpRequest();
-// let menuJson = [];
 
 xmlhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -17,7 +16,6 @@ xmlhttp.onreadystatechange = function () {
     let lactose = false;
     let sortBy = "standard";
     let language = "SWE";
-    let printedMenu = [];
     let uncheckedCategories = [];
     let pickedItems = [];
     let cart = [];
@@ -32,8 +30,7 @@ xmlhttp.onreadystatechange = function () {
 
     // Drop down selectors
     const sortBySelect = document.getElementById("sortBy");
-    // const languageSelect = document.getElementById("languageDesktop");
-    // const languageSelect = document.getElementById("languageMobile");
+
     const languageSelect = document.querySelectorAll(".changeLanguage");
 
     // Buttons
@@ -89,25 +86,29 @@ xmlhttp.onreadystatechange = function () {
           if (language === "SWE") {
             menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
               item.titleSWE
-            }</h3><p>${item.descriptionSWE}</p><p class="pris"> Pris: ${
+            }</h3><p>${
+              item.descriptionSWE
+            }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
               item.priceFull
             } kr${
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</p><button value="${
+            }</h3><button value="${
               item.id
-            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleSWE}"></div>`;
           } else if (language === "ENG") {
             menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
               item.titleENG
-            }</h3><p>${item.descriptionENG}</p><p class="pris"> Pris: ${
+            }</h3><p>${
+              item.descriptionENG
+            }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
               item.priceFull
             } kr${
               item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</p><button value="${
+            }</h3><button value="${
               item.id
-            }" class="buyBTN">+</button></div><div class="item-img"><img src="${
+            }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
               item.img
             }" alt="${item.titleENG}"></div>`;
           }
@@ -200,12 +201,11 @@ xmlhttp.onreadystatechange = function () {
             });
           }
         }
+        let cartTotals = document.createElement("div");
+        cartTotals.classList.add("cart-item-div");
+        cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${total} kr</p>`;
+        cartList.appendChild(cartTotals);
       }
-
-      let cartTotals = document.createElement("div");
-      cartTotals.classList.add("cart-item-div");
-      cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${total} kr</p>`;
-      cartList.appendChild(cartTotals);
 
       languageSelect.forEach((item) => {
         item.addEventListener("change", function (event) {

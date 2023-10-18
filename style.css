@@ -9,7 +9,7 @@ header {
   position: fixed;
   top: 0;
   height: 100px;
-  border-bottom: solid black 2px;
+  border-bottom: solid rgb(186, 186, 186) 2px;
   width: 100%;
   background-color: white;
   z-index: 7;
@@ -31,13 +31,23 @@ main {
 
 select {
   border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
 }
 
 .header {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.logo-header {
+  padding-left: 40px;
 }
 
 .header-heading {
@@ -48,12 +58,13 @@ select {
 }
 
 #cartBtn {
-  position: absolute;
+  /* position: absolute; */
   right: 30px;
   display: flex;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+  margin-right: 40px;
 }
 
 #cartBtn:hover {
@@ -131,20 +142,23 @@ i {
 }
 
 .empty-cart-btn {
-  position: relative;
-  top: 50px;
-  background-color: #4e804e;
-  height: 40px;
+  align-self: center;
+  position: sticky;
+  top: 350px;
+  right: 80px;
+  background-color: red;
+  height: 30px;
   width: 100px;
-  border-radius: 10px;
-  margin: 60px;
-
-  color: white;
+  border-radius: 5px;
+  margin: 30px;
+  background: transparent;
+  color: red;
+  border: solid red 1px;
   cursor: pointer;
 }
 
 .empty-cart-btn:hover {
-  border: solid black 2px;
+  border: solid red 2px;
 }
 
 .filter-box {
@@ -185,14 +199,12 @@ i {
   flex-direction: column;
   justify-content: space-around;
   border-radius: 5px;
-
   border: solid 2px rgb(186, 186, 186);
-
   position: sticky;
   top: 125px;
   margin: 5px;
   width: 250px;
-  height: 500px;
+  height: 550px;
   padding: 30px;
   margin-bottom: 55px;
 }
@@ -216,6 +228,12 @@ i {
   height: 200px;
   max-width: 500px;
   z-index: 1;
+}
+
+.priceAndBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .categoryFilters label {
@@ -253,6 +271,20 @@ label:hover {
 
 .allergyFilters h2 {
   padding-bottom: 5px;
+}
+
+.sort-price {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.language {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .menuItems {
@@ -320,13 +352,6 @@ label:hover {
   height: 22px;
 }
 
-/* .toggle-button .bar {
-  height: 3px;
-  width: 100%;
-  background-color: rgb(0, 0, 0);
-  border-radius: 10px;
-} */
-
 .hidden {
   display: none;
 }
@@ -382,7 +407,7 @@ a {
   }
 
   #cartBtn {
-    position: relative;
+    /* position: relative; */
   }
 }
 
@@ -393,6 +418,14 @@ a {
 
   label {
     font-size: 20px;
+  }
+
+  .header {
+    justify-content: center;
+  }
+
+  .logo-header {
+    padding-left: 0px;
   }
 
   .menuItems {
@@ -460,14 +493,6 @@ a {
     height: 200px;
   }
 
-  .mobile {
-    display: none;
-  }
-
-  .desktop {
-    display: block;
-  }
-
   .header-heading {
     display: none;
   }
@@ -508,7 +533,7 @@ a {
   }
 
   select {
-    width: 120px;
+    width: 220px;
   }
 }
 
@@ -517,10 +542,10 @@ a {
 }
 
 .buyBTN {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: black;
+  background-color: #4e804e;
   color: white;
   font-size: 25px;
   border: none;
@@ -535,9 +560,6 @@ a {
   font-size: 20px;
 }
 
-.sort-price {
-  font-weight: bold;
-}
 .total-price {
   font-weight: bold;
 }
