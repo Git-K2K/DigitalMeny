@@ -11,7 +11,6 @@ xmlhttp.onreadystatechange = function () {
     // Global variables
 
     const menuJson = response.menu;
-    let anyCategoryChecked = false;
     let gluten = false;
     let lactose = false;
     let sortBy = "standard";
@@ -83,35 +82,54 @@ xmlhttp.onreadystatechange = function () {
           const menuItemDiv = document.createElement("div");
           menuItemDiv.classList.add("menuItem");
 
-          if (language === "SWE") {
-            menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-              item.titleSWE
-            }</h3><p>${
-              item.descriptionSWE
-            }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
-              item.priceFull
-            } kr${
-              item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</h3><button value="${
-              item.id
-            }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
-              item.img
-            }" alt="${item.titleSWE}"></div>`;
-          } else if (language === "ENG") {
-            menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-              item.titleENG
-            }</h3><p>${
-              item.descriptionENG
-            }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
-              item.priceFull
-            } kr${
-              item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</h3><button value="${
-              item.id
-            }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
-              item.img
-            }" alt="${item.titleENG}"></div>`;
-          }
+          menuItemDiv.innerHTML = `
+          <div class="menuItem-text"><h3>${
+            language === "SWE" ? item.titleSWE : item.titleENG
+          }</h3>
+          <p>${
+            language === "SWE" ? item.descriptionSWE : item.descriptionENG
+          }</p>
+          <div class="priceAndBtn">
+          <h3 class="pris"> ${language === "SWE" ? "Pris" : "Price"}: ${
+            item.priceFull
+          } kr${
+            item.priceHalf !== "" ? " 1/2 " + item.priceHalf + " kr" : ""
+          }</h3><button value="${
+            item.id
+          }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
+            item.img
+          }" alt="${language === "SWE" ? item.titleSWE : item.titleENG}"></div>
+          `;
+
+          // if (language === "SWE") {
+          //   menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
+          //     item.titleSWE
+          //   }</h3><p>${
+          //     item.descriptionSWE
+          //   }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
+          //     item.priceFull
+          //   } kr${
+          //     item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
+          //   }</h3><button value="${
+          //     item.id
+          //   }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
+          //     item.img
+          //   }" alt="${item.titleSWE}"></div>`;
+          // } else if (language === "ENG") {
+          //   menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
+          //     item.titleENG
+          //   }</h3><p>${
+          //     item.descriptionENG
+          //   }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
+          //     item.priceFull
+          //   } kr${
+          //     item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
+          //   }</h3><button value="${
+          //     item.id
+          //   }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
+          //     item.img
+          //   }" alt="${item.titleENG}"></div>`;
+          // }
 
           document.querySelector(".menuItems").appendChild(menuItemDiv);
         });
