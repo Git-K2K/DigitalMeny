@@ -91,9 +91,7 @@ xmlhttp.onreadystatechange = function () {
             language === "SWE" ? item.descriptionSWE : item.descriptionENG
           }</p>
           <div class="priceAndBtn">
-          <h3 class="pris"> ${language === "SWE" ? "Pris" : "Price"}: ${
-            item.priceFull
-          } kr${
+          <h3 class="pris">${item.priceFull} kr${
             item.priceHalf !== ""
               ? " <i class='fa-solid fa-circle-half-stroke'></i> " +
                 item.priceHalf +
