@@ -101,36 +101,6 @@ xmlhttp.onreadystatechange = function () {
           }" alt="${language === "SWE" ? item.titleSWE : item.titleENG}"></div>
           `;
 
-          // if (language === "SWE") {
-          //   menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-          //     item.titleSWE
-          //   }</h3><p>${
-          //     item.descriptionSWE
-          //   }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
-          //     item.priceFull
-          //   } kr${
-          //     item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-          //   }</h3><button value="${
-          //     item.id
-          //   }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
-          //     item.img
-          //   }" alt="${item.titleSWE}"></div>`;
-          // } else if (language === "ENG") {
-          //   menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-          //     item.titleENG
-          //   }</h3><p>${
-          //     item.descriptionENG
-          //   }</p><div class="priceAndBtn"><h3 class="pris"> Pris: ${
-          //     item.priceFull
-          //   } kr${
-          //     item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-          //   }</h3><button value="${
-          //     item.id
-          //   }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
-          //     item.img
-          //   }" alt="${item.titleENG}"></div>`;
-          // }
-
           document.querySelector(".menuItems").appendChild(menuItemDiv);
         });
       }
@@ -140,7 +110,6 @@ xmlhttp.onreadystatechange = function () {
           pickedItems.push(Number(btn.value));
           cart = [];
           updateCart();
-          console.log(pickedItems);
           languageElements = document.querySelectorAll(".lang");
         });
       });
@@ -148,7 +117,6 @@ xmlhttp.onreadystatechange = function () {
 
     function updateCart() {
       pickedItems.forEach(function (pickedItemId) {
-        // Find the corresponding item in the jsonData array
         let selectedItem = menuJson.find(function (item) {
           return item.id === pickedItemId;
         });
@@ -161,12 +129,9 @@ xmlhttp.onreadystatechange = function () {
       populateCart();
 
       emptyCartBtnHTML.addEventListener("click", () => {
-        console.log("click");
         cart.length = 0;
         pickedItems.length = 0;
-        const cartHTML = document.getElementById("totalItems");
         populateCart();
-        cartHTML.innerHTML = "";
       });
 
       function populateCart() {
@@ -177,7 +142,7 @@ xmlhttp.onreadystatechange = function () {
         let totalItems = cart.length;
 
         const cartHTML = document.getElementById("totalItems");
-        cartHTML.innerHTML = `<p class="total-price">  ${totalItems}</p>`;
+        cartHTML.innerHTML = `<p class="total-items">  ${totalItems}</p>`;
 
         const cartList = document.getElementById("cartList");
         cartList.innerHTML = "";
@@ -416,8 +381,6 @@ xmlhttp.onreadystatechange = function () {
         filterBox.classList.toggle("active");
       }
     });
-
-    //test här
 
     printMenu();
   }
