@@ -399,6 +399,8 @@ xmlhttp.onreadystatechange = function () {
       }
     });
 
+    //test här
+
     printMenu();
   }
 };
