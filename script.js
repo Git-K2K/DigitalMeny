@@ -3,20 +3,22 @@
 
 // Import menu from json-file
 let xmlhttp = new XMLHttpRequest();
-// let menuJson = [];
 
 xmlhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     var response = JSON.parse(this.responseText);
 
+    // Global variables
+
     const menuJson = response.menu;
-    let anyCategoryChecked = false;
     let gluten = false;
     let lactose = false;
     let sortBy = "standard";
     let language = "SWE";
-    let printedMenu = [];
     let uncheckedCategories = [];
+    let pickedItems = [];
+    let cart = [];
+    let total = 0;
 
     // Category checkboxes
     const categoryCheckboxes = document.querySelectorAll(".category");
@@ -27,8 +29,7 @@ xmlhttp.onreadystatechange = function () {
 
     // Drop down selectors
     const sortBySelect = document.getElementById("sortBy");
-    // const languageSelect = document.getElementById("languageDesktop");
-    // const languageSelect = document.getElementById("languageMobile");
+
     const languageSelect = document.querySelectorAll(".changeLanguage");
 
     // Buttons
@@ -37,9 +38,8 @@ xmlhttp.onreadystatechange = function () {
     // HTML elements
     let languageElements = document.querySelectorAll(".lang");
     const menuItemsDiv = document.querySelector(".menuItems");
-    let pickedItems = [];
-    let cart = [];
-    let total = 0;
+    const toggleButton = document.getElementsByClassName("toggle-button")[0];
+    const filterBox = document.getElementsByClassName("filters")[0];
 
     // FUNCTIONS
 
@@ -82,31 +82,24 @@ xmlhttp.onreadystatechange = function () {
           const menuItemDiv = document.createElement("div");
           menuItemDiv.classList.add("menuItem");
 
-          if (language === "SWE") {
-            menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-              item.titleSWE
-            }</h3><p>${item.descriptionSWE}</p><p class="pris"> Pris: ${
-              item.priceFull
-            } kr${
-              item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</p><button value="${
-              item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
-              item.img
-            }" alt="${item.titleSWE}"></div>`;
-          } else if (language === "ENG") {
-            menuItemDiv.innerHTML = `<div class="menuItem-text"><h3>${
-              item.titleENG
-            }</h3><p>${item.descriptionENG}</p><p class="pris"> Pris: ${
-              item.priceFull
-            } kr${
-              item.priceHalf !== "" ? " Halv " + item.priceHalf + " kr" : ""
-            }</p><button value="${
-              item.id
-            }" class="buyBTN">köp</button></div><div class="item-img"><img src="${
-              item.img
-            }" alt="${item.titleENG}"></div>`;
-          }
+          menuItemDiv.innerHTML = `
+          <div class="menuItem-text"><h3>${
+            language === "SWE" ? item.titleSWE : item.titleENG
+          }</h3>
+          <p>${
+            language === "SWE" ? item.descriptionSWE : item.descriptionENG
+          }</p>
+          <div class="priceAndBtn">
+          <h3 class="pris"> ${language === "SWE" ? "Pris" : "Price"}: ${
+            item.priceFull
+          } kr${
+            item.priceHalf !== "" ? " 1/2 " + item.priceHalf + " kr" : ""
+          }</h3><button value="${
+            item.id
+          }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
+            item.img
+          }" alt="${language === "SWE" ? item.titleSWE : item.titleENG}"></div>
+          `;
 
           document.querySelector(".menuItems").appendChild(menuItemDiv);
         });
@@ -117,7 +110,6 @@ xmlhttp.onreadystatechange = function () {
           pickedItems.push(Number(btn.value));
           cart = [];
           updateCart();
-          console.log(pickedItems);
           languageElements = document.querySelectorAll(".lang");
         });
       });
@@ -125,7 +117,6 @@ xmlhttp.onreadystatechange = function () {
 
     function updateCart() {
       pickedItems.forEach(function (pickedItemId) {
-        // Find the corresponding item in the jsonData array
         let selectedItem = menuJson.find(function (item) {
           return item.id === pickedItemId;
         });
@@ -137,17 +128,9 @@ xmlhttp.onreadystatechange = function () {
 
       populateCart();
 
-      const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
       emptyCartBtnHTML.addEventListener("click", () => {
-        console.log("click");
         cart.length = 0;
         pickedItems.length = 0;
-        console.log(cart);
-        const cartList = document.getElementById("cartList");
-        console.log(cartList);
-        let listItem = document.createElement("li");
-        listItem.innerHTML = `No items selected`;
-        cartList.appendChild(listItem);
         populateCart();
       });
 
@@ -155,9 +138,11 @@ xmlhttp.onreadystatechange = function () {
         total = cart.reduce(function (total, currentValue) {
           return total + currentValue.priceFull;
         }, 0);
-        const cartHTML = document.getElementById("totalPrice");
-        cartHTML.innerHTML = `<p class="total-price">${total} kr</p>`;
-        console.log(total);
+
+        let totalItems = cart.length;
+
+        const cartHTML = document.getElementById("totalItems");
+        cartHTML.innerHTML = `<p class="total-items">  ${totalItems}</p>`;
 
         const cartList = document.getElementById("cartList");
         cartList.innerHTML = "";
@@ -165,6 +150,7 @@ xmlhttp.onreadystatechange = function () {
         if (language === "SWE") {
           if (cart.length === 0) {
             let listItem = document.createElement("div");
+            cartHTML.innerHTML = "";
 
             listItem.innerHTML = `<p>Inga produkter i varukorgen</p>`;
 
@@ -173,8 +159,8 @@ xmlhttp.onreadystatechange = function () {
             cart.forEach(function (item) {
               let listItem = document.createElement("div");
 
-              listItem.innerHTML = `<p class="lang">${item.titleSWE} Pris: ${item.priceFull} kr</p> 
-              <p class="lang hidden">${item.titleENG} Price: ${item.priceFull}</p>`;
+              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleSWE}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
+              <p class="lang hidden">${item.titleENG}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
 
               cartList.appendChild(listItem);
             });
@@ -182,20 +168,34 @@ xmlhttp.onreadystatechange = function () {
         } else {
           if (cart.length === 0) {
             let listItem = document.createElement("div");
+            cartHTML.innerHTML = "";
 
             listItem.innerHTML = `<p>No items in cart</p>`;
 
             cartList.appendChild(listItem);
+          } else {
+            cart.forEach(function (item) {
+              let listItem = document.createElement("div");
+
+              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleENG}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
+              <p class="lang hidden">${item.titleSWE}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
+
+              cartList.appendChild(listItem);
+            });
           }
-          cart.forEach(function (item) {
-            let listItem = document.createElement("div");
-
-            listItem.innerHTML = `<p class="lang hidden">${item.titleSWE} Pris: ${item.priceFull} kr</p><p class="lang" >${item.titleENG} Price: ${item.priceFull}</p>`;
-
-            cartList.appendChild(listItem);
-          });
         }
+        let cartTotals = document.createElement("div");
+        cartTotals.classList.add("cart-item-div");
+        cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${total} kr</p>`;
+        cartList.appendChild(cartTotals);
       }
+
+      languageSelect.forEach((item) => {
+        item.addEventListener("change", function (event) {
+          language = event.target.value;
+          populateCart();
+        });
+      });
     }
 
     // Filter a menu array by category
@@ -305,7 +305,7 @@ xmlhttp.onreadystatechange = function () {
 
     // EVENT LISTENERS
 
-    const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+    const emptyCartBtnHTML = document.getElementById("emptyCartBtn1");
     emptyCartBtnHTML.addEventListener("click", () => {
       const cartList = document.getElementById("cartList");
       console.log(cartList);
@@ -353,18 +353,22 @@ xmlhttp.onreadystatechange = function () {
         language = event.target.value;
         toggleLanguage();
         printMenu();
+        populateCart();
       });
     });
 
     // Re-set filters button
     resetFiltersBtn.addEventListener("click", resetFilters);
 
-    // hamburger menu
-    const toggleButton = document.getElementsByClassName("toggle-button")[0];
-    const filterBox = document.getElementsByClassName("filters")[0];
-
+    // Filter button
     toggleButton.addEventListener("click", () => {
       filterBox.classList.toggle("active");
+      toggleButton.innerHTML = filterBox.classList.contains("active")
+        ? `<i class="fa-solid fa-xmark test" alt="Close icon"></i>`
+        : `<i class="fa-solid fa-filter test" alt="Close icon"></i>`;
+      if (cartDropDown.classList.contains("active")) {
+        cartDropDown.classList.toggle("active");
+      }
     });
 
     const cartBtn = document.getElementsByClassName("cart-btn")[0];
@@ -372,6 +376,10 @@ xmlhttp.onreadystatechange = function () {
 
     cartBtn.addEventListener("click", () => {
       cartDropDown.classList.toggle("active");
+
+      if (filterBox.classList.contains("active")) {
+        filterBox.classList.toggle("active");
+      }
     });
 
     printMenu();
@@ -379,5 +387,3 @@ xmlhttp.onreadystatechange = function () {
 };
 xmlhttp.open("GET", "menu.json", true);
 xmlhttp.send();
-
-// Global variables
