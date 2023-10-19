@@ -9,7 +9,6 @@ xmlhttp.onreadystatechange = function () {
     var response = JSON.parse(this.responseText);
 
     // Global variables
-
     const menuJson = response.menu;
     let gluten = false;
     let lactose = false;
@@ -18,7 +17,8 @@ xmlhttp.onreadystatechange = function () {
     let uncheckedCategories = [];
     let pickedItems = [];
     let cart = [];
-    let total = 0;
+    let totalPrice = 0;
+    let totalItems;
 
     // Category checkboxes
     const categoryCheckboxes = document.querySelectorAll(".category");
@@ -29,29 +29,33 @@ xmlhttp.onreadystatechange = function () {
 
     // Drop down selectors
     const sortBySelect = document.getElementById("sortBy");
-
     const languageSelect = document.querySelectorAll(".changeLanguage");
 
     // Buttons
     const resetFiltersBtn = document.getElementById("reset-filters");
+    const emptyCartBtnHTML = document.getElementById("emptyCartBtn");
+    const cartBtn = document.querySelector(".cart-btn");
 
     // HTML elements
     let languageElements = document.querySelectorAll(".lang");
     const menuItemsDiv = document.querySelector(".menuItems");
     const toggleButton = document.getElementsByClassName("toggle-button")[0];
     const filterBox = document.getElementsByClassName("filters")[0];
+    const cartItemCount = document.getElementById("totalItems");
+    const cartList = document.getElementById("cartList");
+    const cartDropDown = document.querySelector(".cart-dropdown");
 
     // FUNCTIONS
 
-    //
+    //Function for printing selected menu items to page.
     function printMenu() {
       // Re-set printedMenu
       let printedMenu = JSON.parse(JSON.stringify(menuJson));
 
       // Call the clearMenu function
       menuItemsDiv.innerHTML = "";
-
       // Sort the menu using the variable sortBy
+
       sortMenu(printedMenu, sortBy);
 
       // Filter the menu on category checkboxes
@@ -68,13 +72,10 @@ xmlhttp.onreadystatechange = function () {
       if (printedMenu.length === 0) {
         const noItemsParagraph = document.createElement("p");
         noItemsParagraph.classList.add("menuItem");
-        if (language === "SWE") {
-          noItemsParagraph.textContent =
-            "Det finns inga rätter som matchar valda kriterier";
-        } else {
-          noItemsParagraph.textContent =
-            "There are no options that match the selected criterias";
-        }
+        noItemsParagraph.textContent =
+          language === "SWE"
+            ? "Det finns inga rätter som matchar valda kriterier"
+            : "There are no options that match the selected criterias";
         document.querySelector(".menuItems").appendChild(noItemsParagraph);
       } else {
         // Create HTML-elements for each menu item
@@ -93,7 +94,11 @@ xmlhttp.onreadystatechange = function () {
           <h3 class="pris"> ${language === "SWE" ? "Pris" : "Price"}: ${
             item.priceFull
           } kr${
-            item.priceHalf !== "" ? " 1/2 " + item.priceHalf + " kr" : ""
+            item.priceHalf !== ""
+              ? " <i class='fa-solid fa-circle-half-stroke'></i> " +
+                item.priceHalf +
+                " kr"
+              : ""
           }</h3><button value="${
             item.id
           }" class="buyBTN">+</button></div></div><div class="item-img"><img src="${
@@ -110,7 +115,6 @@ xmlhttp.onreadystatechange = function () {
           pickedItems.push(Number(btn.value));
           cart = [];
           updateCart();
-          languageElements = document.querySelectorAll(".lang");
         });
       });
     }
@@ -120,82 +124,54 @@ xmlhttp.onreadystatechange = function () {
         let selectedItem = menuJson.find(function (item) {
           return item.id === pickedItemId;
         });
-        // If the item is found, push the priceFull to the cart
         if (selectedItem) {
           cart.push(selectedItem);
         }
       });
 
       populateCart();
+    }
 
-      emptyCartBtnHTML.addEventListener("click", () => {
-        cart.length = 0;
-        pickedItems.length = 0;
-        populateCart();
-      });
+    function populateCart() {
+      //Adds fullPrice to total variable
+      totalPrice = cart.reduce(function (total, currentValue) {
+        return total + currentValue.priceFull;
+      }, 0);
 
-      function populateCart() {
-        total = cart.reduce(function (total, currentValue) {
-          return total + currentValue.priceFull;
-        }, 0);
+      // Set totalItem var to items in cart
+      totalItems = cart.length;
 
-        let totalItems = cart.length;
+      //add text to cartItemCount
+      cartItemCount.innerHTML = `<p class="total-items">  ${totalItems}</p>`;
+      //empty cartList
+      cartList.innerHTML = "";
 
-        const cartHTML = document.getElementById("totalItems");
-        cartHTML.innerHTML = `<p class="total-items">  ${totalItems}</p>`;
+      if (cart.length === 0) {
+        let listItem = document.createElement("div");
+        cartItemCount.innerHTML = ""; // empty cartItemCount
 
-        const cartList = document.getElementById("cartList");
-        cartList.innerHTML = "";
+        listItem.innerHTML = `<p> ${
+          language === "SWE"
+            ? "Inga produkter i varukorgen"
+            : "No items in cart"
+        } </p>`; //adds text to cartList div
 
-        if (language === "SWE") {
-          if (cart.length === 0) {
-            let listItem = document.createElement("div");
-            cartHTML.innerHTML = "";
-
-            listItem.innerHTML = `<p>Inga produkter i varukorgen</p>`;
-
-            cartList.appendChild(listItem);
-          } else {
-            cart.forEach(function (item) {
-              let listItem = document.createElement("div");
-
-              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleSWE}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
-              <p class="lang hidden">${item.titleENG}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
-
-              cartList.appendChild(listItem);
-            });
-          }
-        } else {
-          if (cart.length === 0) {
-            let listItem = document.createElement("div");
-            cartHTML.innerHTML = "";
-
-            listItem.innerHTML = `<p>No items in cart</p>`;
-
-            cartList.appendChild(listItem);
-          } else {
-            cart.forEach(function (item) {
-              let listItem = document.createElement("div");
-
-              listItem.innerHTML = `<div class="cart-item-div"><p class="lang">${item.titleENG}</p> <p class="cart-pris lang"> ${item.priceFull} kr</p> 
-              <p class="lang hidden">${item.titleSWE}</p> <p class="cart-pris lang hidden"> ${item.priceFull}</p></div>`;
-
-              cartList.appendChild(listItem);
-            });
-          }
-        }
-        let cartTotals = document.createElement("div");
-        cartTotals.classList.add("cart-item-div");
-        cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${total} kr</p>`;
-        cartList.appendChild(cartTotals);
+        cartList.appendChild(listItem);
+      } else {
+        // adds every picker item to cartList
+        cart.forEach(function (item) {
+          let listItem = document.createElement("div");
+          listItem.innerHTML = `<div class="cart-item-div"><p>${
+            language === "SWE" ? item.titleSWE : item.titleENG
+          }</p> <p class="cart-pris"> ${item.priceFull} kr</p>`;
+          cartList.appendChild(listItem);
+        });
       }
 
-      languageSelect.forEach((item) => {
-        item.addEventListener("change", function (event) {
-          language = event.target.value;
-          populateCart();
-        });
-      });
+      let cartTotals = document.createElement("div"); //create new div
+      cartTotals.classList.add("cart-item-div"); //add class to div
+      cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${totalPrice} kr</p>`; //adds totalPrice to div
+      cartList.appendChild(cartTotals);
     }
 
     // Filter a menu array by category
@@ -224,7 +200,7 @@ xmlhttp.onreadystatechange = function () {
     function sortMenu(menu, sortBy) {
       // High to low
       if (sortBy === "priceHighLow") {
-        printedMenu = menu.sort(function (a, b) {
+        menu = menu.sort(function (a, b) {
           if (a.priceFull < b.priceFull) {
             return 1;
           } else {
@@ -233,7 +209,7 @@ xmlhttp.onreadystatechange = function () {
         });
         // Low to high
       } else if (sortBy === "priceLowHigh") {
-        printedMenu = menu.sort(function (a, b) {
+        menu = menu.sort(function (a, b) {
           if (a.priceFull > b.priceFull) {
             return 1;
           } else {
@@ -305,13 +281,11 @@ xmlhttp.onreadystatechange = function () {
 
     // EVENT LISTENERS
 
-    const emptyCartBtnHTML = document.getElementById("emptyCartBtn1");
+    //Empty cart button
     emptyCartBtnHTML.addEventListener("click", () => {
-      const cartList = document.getElementById("cartList");
-      console.log(cartList);
-      let listItem = document.createElement("li");
-      listItem.innerHTML = `No items selected`;
-      cartList.appendChild(listItem);
+      cart = [];
+      pickedItems = [];
+      populateCart();
     });
 
     // Category checkboxes
@@ -370,9 +344,6 @@ xmlhttp.onreadystatechange = function () {
         cartDropDown.classList.toggle("active");
       }
     });
-
-    const cartBtn = document.getElementsByClassName("cart-btn")[0];
-    const cartDropDown = document.getElementsByClassName("cart-dropdown")[0];
 
     cartBtn.addEventListener("click", () => {
       cartDropDown.classList.toggle("active");
