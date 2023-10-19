@@ -84,7 +84,11 @@ label {
 
 .cart-dropdown {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 300px;
+  max-height: calc(100vh - 200px);
   width: 400px;
   padding: 20px;
   background-color: #ffffff;
@@ -92,6 +96,8 @@ label {
   display: none;
   border: solid rgb(186, 186, 186) 2px;
   box-shadow: 2px 6px 14px 1px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  overflow: scroll;
 }
 
 .cart-dropdown.active {
@@ -118,6 +124,11 @@ label {
 .cart-total {
   font-size: 20px;
   font-weight: 900;
+}
+
+.empty-cart-btn-container {
+  display: flex;
+  justify-content: center;
 }
 
 #cartList p {
