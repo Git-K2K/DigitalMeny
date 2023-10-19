@@ -28,7 +28,7 @@ header {
 }
 
 main {
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 select {
@@ -349,7 +349,7 @@ label:hover {
 }
 
 .menuItems2 {
-  min-height: 600px;
+  min-height: 300px;
 }
 
 .menuItem-text {
