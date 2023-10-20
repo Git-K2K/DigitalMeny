@@ -91,7 +91,7 @@ xmlhttp.onreadystatechange = function () {
             language === "SWE" ? item.descriptionSWE : item.descriptionENG
           }</p>
           <div class="priceAndBtn">
-          <h3 class="pris">${item.priceFull} kr${
+          <h3 class="price">${item.priceFull} kr${
             item.priceHalf !== ""
               ? " <i class='fa-solid fa-circle-half-stroke'></i> " +
                 item.priceHalf +
@@ -108,7 +108,7 @@ xmlhttp.onreadystatechange = function () {
         });
       }
       let buyBTN = document.querySelectorAll(".buyBTN");
-      buyBTN.forEach((btn) => {
+      buyBTN.forEach(btn => {
         btn.addEventListener("click", () => {
           pickedItems.push(Number(btn.value));
           cart = [];
@@ -156,26 +156,26 @@ xmlhttp.onreadystatechange = function () {
 
         cartList.appendChild(listItem);
       } else {
-        // adds every picker item to cartList
+        // adds every picked item to cartList
         cart.forEach(function (item) {
           let listItem = document.createElement("div");
           listItem.innerHTML = `<div class="cart-item-div"><p>${
             language === "SWE" ? item.titleSWE : item.titleENG
-          }</p> <p class="cart-pris"> ${item.priceFull} kr</p>`;
+          }</p> <p class="cart-price"> ${item.priceFull} kr</p>`;
           cartList.appendChild(listItem);
         });
       }
 
       let cartTotals = document.createElement("div"); //create new div
       cartTotals.classList.add("cart-item-div"); //add class to div
-      cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-pris"> ${totalPrice} kr</p>`; //adds totalPrice to div
+      cartTotals.innerHTML = `<p class="cart-total">Total</p><p class="cart-price"> ${totalPrice} kr</p>`; //adds totalPrice to div
       cartList.appendChild(cartTotals);
     }
 
     // Filter a menu array by category
     function filterCategories(menu) {
       uncheckedCategories.forEach(function (category) {
-        menu = menu.filter((menuItem) => menuItem.category !== category);
+        menu = menu.filter(menuItem => menuItem.category !== category);
       });
 
       return menu;
@@ -184,11 +184,11 @@ xmlhttp.onreadystatechange = function () {
     // Filter the menu array by allergies
     function filterAllergies(menu) {
       if (lactose) {
-        menu = menu.filter((menuItem) => menuItem.lactoseFree);
+        menu = menu.filter(menuItem => menuItem.lactoseFree);
       }
 
       if (gluten) {
-        menu = menu.filter((menuItem) => menuItem.glutenFree);
+        menu = menu.filter(menuItem => menuItem.glutenFree);
       }
 
       return menu;
@@ -245,7 +245,7 @@ xmlhttp.onreadystatechange = function () {
     function resetFilters() {
       // Uncheck all boxes
       const allCheckBoxes = document.querySelectorAll(".checkbox");
-      allCheckBoxes.forEach((checkbox) => {
+      allCheckBoxes.forEach(checkbox => {
         checkbox.checked = false;
       });
       // Re-set sorting
@@ -257,7 +257,7 @@ xmlhttp.onreadystatechange = function () {
     // Create an array with the values of all unchecked category boxes. Used to filter the menu.
     function getUncheckedCategories() {
       uncheckedCategories = [];
-      categoryCheckboxes.forEach((box) => {
+      categoryCheckboxes.forEach(box => {
         if (!box.checked) {
           uncheckedCategories.push(box.value);
         }
@@ -266,7 +266,7 @@ xmlhttp.onreadystatechange = function () {
 
     // Toggle the CSS hidden-class based on the language variable.
     function toggleLanguage() {
-      languageElements.forEach((el) => {
+      languageElements.forEach(el => {
         el.classList.toggle("hidden");
       });
 
@@ -287,7 +287,7 @@ xmlhttp.onreadystatechange = function () {
     });
 
     // Category checkboxes
-    categoryCheckboxes.forEach((box) => {
+    categoryCheckboxes.forEach(box => {
       box.addEventListener("change", function (event) {
         // If the vegetarian option is selected, all other categories are unchecked
         if (event.target.value === "Veg" && event.target.checked) {
@@ -320,7 +320,7 @@ xmlhttp.onreadystatechange = function () {
     });
 
     // Language selector
-    languageSelect.forEach((item) => {
+    languageSelect.forEach(item => {
       item.addEventListener("change", function (event) {
         language = event.target.value;
         toggleLanguage();

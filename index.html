@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Love+Ya+Like+A+Sister&display=swap"
-      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet" /> -->
     <title>Lucky Duck Menu</title>
 
     <link rel="stylesheet" href="style.css" />
@@ -38,17 +36,22 @@
         <div class="cart-header">
           <h2 class="lang">Varukorg</h2>
           <h2 class="lang hidden">Cart</h2>
+          <div class="empty-cart-btn-container">
+            <button class="empty-cart-btn" id="emptyCartBtn">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
         </div>
         <div id="cartList">
           <p class="lang">Inga produkter i varukorgen</p>
           <p class="lang hidden">No items in cart</p>
         </div>
-        <div class="empty-cart-btn-container">
+        <!-- <div class="empty-cart-btn-container">
           <button class="empty-cart-btn" id="emptyCartBtn">
             <span class="lang">Töm Kundvagn</span
             ><span class="lang hidden">Empty Cart</span>
           </button>
-        </div>
+        </div> -->
         <!-- <button class="empty-cart-btn" id="emptyCartBtn">
           <span class="lang">Töm Kundvagn</span
           ><span class="lang hidden">Empty Cart</span>
@@ -62,15 +65,15 @@
           <div class="filter-box">
             <h2 class="filter-header">Filters</h2>
             <button type="button" class="reset-button" id="reset-filters">
-              <span class="lang">Rensa filter</span
-              ><span class="lang hidden">Clear Filters</span>
+              <span class="lang">Rensa filter</span>
+              <span class="lang hidden">Clear Filters</span>
             </button>
           </div>
 
           <!-- Category checkboxes -->
           <div class="categoryFilters">
-            <h2 class="lang">Kategorier</h2>
-            <h2 class="lang hidden">Categories</h2>
+            <h3 class="lang">Kategorier</h3>
+            <h3 class="lang hidden">Categories</h3>
             <input
               type="checkbox"
               class="checkbox category"
@@ -118,8 +121,8 @@
 
           <!-- Allergy checkboxes -->
           <div class="allergyFilters">
-            <h2 class="lang">Allergier</h2>
-            <h2 class="lang hidden">Allergies</h2>
+            <h3 class="lang">Allergier</h3>
+            <h3 class="lang hidden">Allergies</h3>
             <input
               type="checkbox"
               class="checkbox allergy"
@@ -142,40 +145,36 @@
 
           <!-- Sorting selector -->
           <div class="sorting">
-            <div class="sort-price">
-              <label for="sortBy" class="lang">Sortering</label>
-              <label for="sortBy" class="lang hidden">Sort by</label>
+            <label for="sortBy" class="lang">Sortering</label>
+            <label for="sortBy" class="lang hidden">Sort by</label>
 
-              <select name="sortBy" id="sortBy">
-                <option value="standard">Standard</option>
-                <option value="priceLowHigh" class="lang">
-                  Pris, stigande
-                </option>
-                <option value="priceLowHigh" class="lang hidden">
-                  Price, ascending
-                </option>
-                <option value="priceHighLow" class="lang">
-                  Pris, fallande
-                </option>
-                <option value="priceHighLow" class="lang hidden">
-                  Price, descending
-                </option>
-              </select>
-            </div>
+            <select name="sortBy" id="sortBy">
+              <option value="standard">Standard</option>
+              <option value="priceLowHigh" class="lang">Pris, stigande</option>
+              <option value="priceLowHigh" class="lang hidden">
+                Price, ascending
+              </option>
+              <option value="priceHighLow" class="lang">Pris, fallande</option>
+              <option value="priceHighLow" class="lang hidden">
+                Price, descending
+              </option>
+            </select>
+          </div>
 
-            <div class="language">
-              <label for="languageSelect"
-                ><span class="lang">Välj språk</span
-                ><span class="lang hidden">Choose language</span></label
-              >
-              <select
-                id="languageSelect"
-                name="languageSelect"
-                class="changeLanguage">
-                <option value="SWE" lang="sv">Svenska</option>
-                <option value="ENG" lang="en">English</option>
-              </select>
-            </div>
+          <div class="language">
+            <label for="languageSelect" class="lang">Språk</label>
+            <label for="languageSelect" class="lang hidden">Language</label>
+            <!-- <label for="languageSelect"
+              ><span class="lang">Välj språk</span
+              ><span class="lang hidden">Choose language</span></label
+            > -->
+            <select
+              id="languageSelect"
+              name="languageSelect"
+              class="changeLanguage">
+              <option value="SWE" lang="sv">Svenska</option>
+              <option value="ENG" lang="en">English</option>
+            </select>
           </div>
         </div>
         <div class="menu">
@@ -188,38 +187,15 @@
     </main>
     <footer>
       <div class="footer">
-        <div class="logo-footer">
-          <img
-            src="./images/lucky_duck.png"
-            alt="Lucky Duck Logo"
-            height="70" />
-        </div>
         <div>
-          <ul>
-            <li>
-              <a class="lang" href="#top">Hem</a
-              ><a class="lang hidden" href="#top">Home</a>
-            </li>
-            <li>
-              <a class="lang" href="#">Kontakt</a>
-              <a class="lang hidden" href="#">Contact</a>
-            </li>
-            <li>
-              <a class="lang" href="#">Om oss</a>
-              <a class="lang hidden" href="#">About us</a>
-            </li>
-            <li>
-              <a href="#" class="lang">FAQ</a>
-            </li>
-          </ul>
+          <img src="./images/lucky_duck.png" alt="Lucky Duck Logo" />
         </div>
-        <div>
-          <ul>
-            <li>Nynasvagen 325</li>
-            <li>122 34 Enskede</li>
-            <li>08-649 06 09</li>
-            <li>Contact@luckyduck.se</li>
-          </ul>
+        <div class="contact-info">
+          <h4>Lucky Duck</h4>
+          <p>Nynasvagen 325</p>
+          <p>122 34 Enskede</p>
+          <p>08-649 06 09</p>
+          <p>Contact@luckyduck.se</p>
         </div>
       </div>
     </footer>
